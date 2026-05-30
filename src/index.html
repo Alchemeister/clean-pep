@@ -1,179 +1,143 @@
-     1|<!DOCTYPE html>
-     2|<html lang="en">
-     3|<head>
-     4|<meta charset="UTF-8">
-     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-     6|<title>CleanPep — Vendor Cleanliness Scores Based on Real Lab Data (2026)</title>
-     7|<meta name="description" content="Independent ranking of peptide vendors by what their COAs actually prove — residual solvents, TFA, heavy metals, and endotoxins. Data from Finnrick Analytics' 7,466 public tests.">
-     8|<style>
-     9|:root{--bg:#0d1117;--bg-card:#161b22;--bg-card-hover:#1c2333;--text:#e6edf3;--text-muted:#8b949e;--accent:#3fb950;--warn:#f85149;--amber:#d2991d;--border:#30363d;--radius:8px}
-    10|*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    11|html{font-size:16px;scroll-behavior:smooth}
-    12|body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-    13|a{color:var(--accent);text-decoration:none}
-    14|a:hover{text-decoration:underline}
-    15|.container{max-width:1100px;margin:0 auto;padding:0 1rem}
-    16|.badge{display:inline-block;padding:.15rem .5rem;border-radius:4px;font-size:.75rem;font-weight:600}
-    17|.badge-warn{background:rgba(248,81,73,.15);color:var(--warn)}
-    18|.badge-green{background:rgba(63,185,80,.15);color:var(--accent)}
-    19|.badge-amber{background:rgba(210,153,29,.15);color:var(--amber)}
-    20|nav{background:var(--bg-card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:.75rem 0}
-    21|nav .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
-    22|nav .logo{font-weight:700;font-size:1.1rem;color:var(--accent)}
-    23|nav .links{display:flex;gap:1rem;flex-wrap:wrap}
-    24|nav .links a{color:var(--text-muted);font-size:.875rem;padding:.25rem .5rem;border-radius:4px;transition:color .15s}
-    25|nav .links a:hover{color:var(--text);text-decoration:none}
-    26|.hero{padding:4rem 0 3rem;text-align:center}
-    27|.hero h1{font-size:2rem;line-height:1.3;margin-bottom:1rem}
-    28|.hero p{color:var(--text-muted);font-size:1.1rem;max-width:700px;margin:0 auto 1.5rem}
-    29|.hero .cta{display:inline-block;background:var(--accent);color:#000;padding:.75rem 2rem;border-radius:var(--radius);font-weight:600;font-size:1rem;transition:opacity .15s}
-    30|.hero .cta:hover{opacity:.85;text-decoration:none}
-    31|.hero .disclaimer{font-size:.75rem;color:var(--text-muted);margin-top:1.5rem;display:block}
-    32|section{padding:3rem 0;border-top:1px solid var(--border)}
-    33|section h2{font-size:1.5rem;margin-bottom:1rem}
-    34|section h3{font-size:1.15rem;margin-bottom:.75rem;color:var(--accent)}
-    35|section p,section li{color:var(--text-muted);margin-bottom:.75rem}
-    36|section ul{padding-left:1.25rem}
-    37|.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.5rem}
-    38|.card:hover{background:var(--bg-card-hover)}
-    39|.score{font-weight:700;font-size:1.2rem}
-    40|.score-a{color:var(--accent)}.score-b{color:var(--amber)}.score-c{color:var(--warn)}
-    41|.scoreboard{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin:2rem 0}
-    42|.scoreboard .card{text-align:center}
-    43|.scoreboard .rank{font-size:.75rem;text-transform:uppercase;color:var(--text-muted);margin-bottom:.5rem}
-    44|.scoreboard .vendor-name{font-size:1.25rem;font-weight:600}
-    45|.scoreboard .big-score{font-size:3rem;font-weight:800;line-height:1}
-    46|table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.85rem;overflow-x:auto;display:block}
-    47|table thead th{background:var(--bg-card);border-bottom:2px solid var(--border);padding:.5rem .75rem;text-align:left;white-space:nowrap;color:var(--text);font-weight:600}
-    48|table tbody td{padding:.5rem .75rem;border-bottom:1px solid var(--border);white-space:nowrap}
-    49|table tbody tr:hover{background:var(--bg-card-hover)}
-    50|.check{color:var(--accent)}.cross{color:var(--warn)}.partial{color:var(--amber)}
-    51|.footnote{font-size:.75rem;color:var(--text-muted);margin-top:.5rem;font-style:italic}
-    52|.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-    53|@media(max-width:768px){.two-col{grid-template-columns:1fr}.hero h1{font-size:1.5rem}table{font-size:.75rem}nav .links{gap:.5rem}}
-    54|.green-flag{color:var(--accent)}.red-flag{color:var(--warn)}
-    55|.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin:2rem 0}
-    56|footer{background:var(--bg-card);border-top:1px solid var(--border);padding:2rem 0;margin-top:3rem;font-size:.8rem;color:var(--text-muted);text-align:center}
-    57|footer p{margin-bottom:.5rem}
-    58|.footer-disclaimer{max-width:700px;margin:1rem auto;line-height:1.5}
-    59|</style>
-    60|</head>
-    61|<body>
-    62|<nav>
-    63|  <div class="container">
-    64|    <a href="/" class="logo">🧪 CleanPep</a>
-    65|    <div class="links">
-    66|      <a href="retatrutide.html">Retatrutide</a>
-    67|      <a href="tirzepatide.html">Tirzepatide</a>
-    68|      <a href="bpc157.html">BPC-157</a>
-    69|      <a href="coa-guide.html">COA Guide</a>
-    70|      <a href="about.html">About</a>
-    71|    </div>
-    72|  </div>
-    73|</nav>
-    74|
-    75|<div class="container">
-    76|  <div class="hero">
-    77|    <span class="badge badge-warn" style="margin-bottom:1rem;display:inline-block">⚠️ Research Use Only</span>
-    78|    <h1>I Got Tired of Fake Lists.<br>Here's The One That Actually Checks Solvents, TFA &amp; Metals.</h1>
-    79|    <p>Every vendor claims "99% purity." Almost none show residual solvents, quantitative TFA, heavy metals (ICP-MS), or endotoxin data. Finnrick Analytics has tested 7,466 samples across 212 vendors. I'm just showing you what the data actually says — ranked 1 to 10.</p>
-    80|    <a href="retatrutide.html" class="cta">See the Retatrutide Scores →</a>
-    81|    <span class="disclaimer">Affiliate links fund this site at no cost to you. Strictly for laboratory research use only.</span>
-    82|  </div>
-    83|
-    84|  <div class="scoreboard">
-    85|    <div class="card">
-    86|      <div class="rank">🥇 #1 Overall</div>
-    87|      <div class="vendor-name">Paradigm Peptide</div>
-    88|      <div class="big-score score-a">9</div>
-    89|      <div style="color:var(--text-muted);font-size:.85rem">Full panel transparency<br>Avg Finnrick: 8.5 · Retatrutide A-rated</div>
-    90|    </div>
-    91|    <div class="card">
-    92|      <div class="rank">🥈 #2 Overall</div>
-    93|      <div class="vendor-name">Peptide Partners</div>
-    94|      <div class="big-score score-a">8</div>
-    95|      <div style="color:var(--text-muted);font-size:.85rem">Consistent high scores<br>Avg Finnrick: 8.2 · 74 tests, 8 May 2026</div>
-    96|    </div>
-    97|    <div class="card">
-    98|      <div class="rank">🥉 #3 Overall</div>
-    99|      <div class="vendor-name">Orbitrex Peptides</div>
-   100|      <div class="big-score score-b">8</div>
-   101|      <div style="color:var(--text-muted);font-size:.85rem">Strong newcomer<br>Avg Finnrick: 8.5 · 24 tests, 28 Apr 2026</div>
-   102|    </div>
-   103|  </div>
-   104|</div>
-   105|
-   106|<section>
-   107|  <div class="container">
-   108|    <h2>Why This Site Exists</h2>
-   109|    <p>I'm a disabled researcher who got sick of the peptide vendor "review" ecosystem. Every list is the same: "These 10 vendors are great! (affiliate link, affiliate link)." Nobody talks about what actually matters.</p>
-   110|    <p><strong>99% purity means nothing if your vial is 40% residual solvent.</strong> A 2023 Belgian study tested "high purity" peptides from 12 vendors and found 5 had dangerous solvent levels. Finnrick's own data reveals vendors hiding TFA levels, skipping metals testing, and quietly avoiding endotoxin screens.</p>
-   111|    <p>This site ranks vendors on what they <strong>prove</strong> — not what they claim. All data sourced from Finnrick Analytics' public database (7,466 tests, 212 vendors, updated 22 May 2026).</p>
-   112|  </div>
-   113|</section>
-   114|
-   115|<section>
-   116|  <div class="container">
-   117|    <h2>Multi-Source Approach</h2>
-   118|    <p>We prioritize <strong>Finnrick's independent database</strong> (7,466 tests, largest public peptide dataset) but cross-reference:</p>
-   119|    <div class="grid-3">
-   120|      <div class="card">
-   121|        <h3>🔬 Finnrick Analytics</h3>
-   122|        <p>Independent lab, zero-trust submission model. 212 vendors, 15 products. Public ratings (A–E) with per-product breakdowns. Last updated 22 May 2026.</p>
-   123|      </div>
-   124|      <div class="card">
-   125|        <h3>🏷️ Vendor-Published COAs</h3>
-   126|        <p>Janoshik, MZ Biolabs, and other 3rd party lab certificates published by vendors on their sites. We note which vendors actually link to these publicly.</p>
-   127|      </div>
-   128|      <div class="card">
-   129|        <h3>📅 Batch Date Tracking</h3>
-   130|        <p>Every vendor in our tables includes the latest public batch/test date. No 2-year-old COAs passing as current. Fresh data only.</p>
-   131|      </div>
-   132|    </div>
-   133|    <p class="footnote">All data sourced from public pages only — no purchases, no scrapers, no API access needed. Verify everything live at <a href="https://finnrick.com/vendors">finnrick.com/vendors</a>.</p>
-   134|  </div>
-   135|</section>
-   136|
-   137|<section>
-   138|  <div class="container">
-   139|    <h2>How the Cleanliness Score Works</h2>
-   140|    <table>
-   141|      <thead><tr><th>Score</th><th>What It Means</th></tr></thead>
-   142|      <tbody>
-   143|        <tr><td class="score-a">9–10</td><td>Shows HPLC purity + quantitative TFA + solvents + ICP-MS metals + optionally endotoxin. Transparent, links to 3rd party COAs. <strong>+1 bonus if 2026 batches from 2+ labs.</strong></td></tr>
-   144|        <tr><td class="score-b">7–8</td><td>Shows good purity data + some contamination panels. Missing 1–2 key tests or COAs are self-reported.</td></tr>
-   145|        <tr><td style="color:var(--amber)">5–6</td><td>Shows HPLC purity only. No solvent/TFA/metals data. "Trust us" vibes.</td></tr>
-   146|        <tr><td class="score-c">3–4</td><td>Suspicious claims, outdated COAs, or hiding key contamination data.</td></tr>
-   147|        <tr><td class="cross">1–2</td><td>Known Finnrick failures, fake COAs, or no public test data at all.</td></tr>
-   148|      </tbody>
-   149|    </table>
-   150|  </div>
-   151|</section>
-   152|
-   153|<section>
-   154|  <div class="container">
-   155|    <h2>Quick Product Summary</h2>
-   156|    <p style="color:var(--text-muted)">Finnrick public data as of 22 May 2026. Full tables on each product page.</p>
-   157|    <table>
-   158|      <thead><tr><th>Product</th><th>Tests</th><th>Vendors</th><th>Avg Score</th><th>Top A-Rated Vendors (Finnrick)</th><th>Full Table</th></tr></thead>
-   159|      <tbody>
-   160|        <tr><td>Retatrutide</td><td>2,778</td><td>173</td><td>7.2</td><td>Paradigm, Peptide Partners, Jeep Bio, Aavant Research + 13 more</td><td><a href="retatrutide.html">View →</a></td></tr>
-   161|        <tr><td>Tirzepatide</td><td>1,930</td><td>140</td><td>7.1</td><td>Aavant Research, Nuscience, Paradigm, Polaris, Skye + 2 more</td><td><a href="tirzepatide.html">View →</a></td></tr>
-   162|        <tr><td>BPC-157</td><td>551</td><td>78</td><td>6.1</td><td>Peptide Sciences (only A-rated)</td><td><a href="bpc157.html">View →</a></td></tr>
-   163|        <tr><td>TB-500</td><td>102</td><td>14</td><td>5.7</td><td>Peptide Partners (only A-rated)</td><td><a href="bpc157.html">View →</a></td></tr>
-   164|        <tr><td>Semaglutide</td><td>315</td><td>52</td><td>6.9</td><td>Amino Amigos, Astro, Bulk Peptide Supply, HK Peptides + 3 more</td><td><a href="#">Coming soon</a></td></tr>
-   165|      </tbody>
-   166|    </table>
-   167|  </div>
-   168|</section>
-   169|
-   170|<footer>
-   171|  <div class="container">
-   172|    <p><strong>⚠️ Strictly for laboratory research use only. Not for human or animal consumption.</strong></p>
-   173|    <p class="footer-disclaimer">None of the statements on this site have been evaluated by the FDA or any regulatory authority. The Cleanliness Score is an editorial rating based on publicly available test data and is not a safety or efficacy endorsement. Always verify all data independently. We earn affiliate commissions from some linked vendors at no additional cost to you. This site does not provide medical advice. CleanPep © 2026.</p>
-   174|    <p><a href="about.html">About / Full Disclaimer</a> · <a href="coa-guide.html">How to Read a COA</a> · <a href="#">Submit Your Vendor</a></p>
-   175|  </div>
-   176|</footer>
-   177|</body>
-   178|</html>
-   179|
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CleanPep — Vendor Cleanliness Scores Based on Real Lab Data (2026)</title>
+<meta name="description" content="Independent ranking of peptide vendors by what their COAs actually prove — residual solvents, TFA, heavy metals, and endotoxins. Data from Finnrick Analytics' 7,829 public tests across 224 vendors.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div>
+    <a href="/" class="logo">🧪 CleanPep <span>v2 — May 2026</span></a>
+  </div>
+  <div class="links">
+    <a href="retatrutide.html">Reta</a>
+    <a href="tirzepatide.html">Tirz</a>
+    <a href="bpc157.html">BPC/TB</a>
+    <a href="coa-guide.html">COA Guide</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<div class="container">
+  <section class="hero">
+    <h1>I got tired of fake vendor lists.<br>So I built the one that actually checks <em>solvents, TFA, and metals.</em></h1>
+    <p class="sub">Every list says "99% purity." Almost none show residual solvents, TFA contamination, heavy metals (ICP-MS), or endotoxins. Finnrick Analytics has tested 7,829 samples from 224 vendors and publishes the results publicly. I'm just showing you what the data actually says — ranked 1 to 10, with batch dates, top colors, and multi-lab verification so nothing is hidden behind marketing.</p>
+  </section>
+
+  <div class="source-bar">
+    <div class="src-item"><span class="src-dot src-dot-live"></span> Finnrick: 7,829 tests · 224 vendors · 18 products</div>
+    <div class="src-item"><span class="src-dot src-dot-live"></span> Janoshik: Individual COA verification (cross-reference badges)</div>
+    <div class="src-item"><span class="src-dot src-dot-live"></span> Community: Reddit r/saferpeptides · Discord</div>
+    <div class="last-updated">Last synced: 29 May 2026</div>
+  </div>
+
+  <h2 class="section-title">Quick Top 3 <span class="badge badge-new">RETATRUTIDE</span></h2>
+  <div class="featured-grid">
+    <div class="card">
+      <div class="rank">#1 — Best Overall</div>
+      <div class="vendor-name">Paradigm Peptide</div>
+      <div class="score-row">
+        <div class="score score-hi">9</div>
+        <div class="score-label"><strong>Finnrick A</strong><br>Confident rating</div>
+      </div>
+      <div class="lab-badges">
+        <span class="lab-badge lab-finnrick">Finnrick ✓</span>
+        <span class="lab-badge lab-janoshik">Janoshik ✓</span>
+      </div>
+      <div class="top-color"><span class="color-swatch color-blue"></span> Latest COA Top: <strong>Blue</strong></div>
+      <div class="batch-date">📅 Finnrick: 28 May 2026</div>
+      <div class="procon">
+        <span class="pro">✓ Full panels — solvents, TFA, metals shown</span><br>
+        <span class="con">✗ Endotoxin not standard (Finnrick now offers it)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="rank">#2 — Strong Runner-Up</div>
+      <div class="vendor-name">Peptide Partners</div>
+      <div class="score-row">
+        <div class="score score-hi">8</div>
+        <div class="score-label"><strong>Finnrick A</strong><br>Confident rating</div>
+      </div>
+      <div class="lab-badges">
+        <span class="lab-badge lab-finnrick">Finnrick ✓</span>
+        <span class="lab-badge lab-janoshik">Janoshik ✓</span>
+      </div>
+      <div class="top-color"><span class="color-swatch color-clear"></span> Latest COA Top: <strong>Clear</strong></div>
+      <div class="batch-date">📅 Finnrick: 28 May 2026 · Jano: 20 May 2026</div>
+      <div class="procon">
+        <span class="pro">✓ Consistently high Finnrick scores. Strong panels.</span><br>
+        <span class="con">✗ Smaller selection than Paradigm</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="rank">#3 — Up-and-Comer</div>
+      <div class="vendor-name">Nuscience Peptides</div>
+      <div class="score-row">
+        <div class="score score-hi">8</div>
+        <div class="score-label"><strong>Finnrick A</strong><br>Confident rating</div>
+      </div>
+      <div class="lab-badges">
+        <span class="lab-badge lab-finnrick">Finnrick ✓</span>
+        <span class="lab-badge lab-unverified">Janoshik ?</span>
+      </div>
+      <div class="top-color"><span class="color-swatch color-unknown"></span> COA Top: <strong>Verify live</strong></div>
+      <div class="batch-date">📅 Finnrick: 27 May 2026</div>
+      <div class="procon">
+        <span class="pro">✓ A-rated across multiple products (Reta, Tirz, BPC)</span><br>
+        <span class="con">✗ No Janoshik COA found — cross-ref needed</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta" style="text-align:center;margin:1rem 0 2rem;">
+    <a href="retatrutide.html" class="btn btn-accent">📊 Full Retatrutide Table (185 vendors)</a>
+    <a href="tirzepatide.html" class="btn btn-outline">Tirzepatide →</a>
+    <a href="bpc157.html" class="btn btn-outline">BPC-157 →</a>
+  </div>
+
+  <h2 class="section-title">Why This Matters</h2>
+  <div class="method">
+    <div class="method-grid">
+      <div class="method-item">
+        <div class="label">Residual Solvents</div>
+        The synthesis process leaves behind acetonitrile, DMF, TFA. A "99% pure" peptide can be 40% solvent by weight. A 2023 Belgian study found 5 of 12 vendors exceeded safety thresholds.
+      </div>
+      <div class="method-item">
+        <div class="label">TFA Quantification</div>
+        A "10mg vial" sold as TFA salt may contain 7mg peptide + 3mg acid. Without quantitative TFA, you don't know what you're actually getting.
+      </div>
+      <div class="method-item">
+        <div class="label">Heavy Metals (ICP-MS)</div>
+        Palladium, platinum, and other synthesis catalysts have strict pharmaceutical limits. Almost no vendor tests for metals voluntarily.
+      </div>
+      <div class="method-item">
+        <div class="label">Endotoxins</div>
+        Bacterial contamination causes immune reactions. Finnrick now offers endotoxin testing — very few vendors voluntarily include it. If they do, it's a massive trust signal.
+      </div>
+      <div class="method-item">
+        <div class="label">Multi-Lab Verification</div>
+        We cross-reference Finnrick scores with Janoshik individual COAs and community reports. One lab is good. Two+ labs = you can actually trust the data.
+      </div>
+      <div class="method-item">
+        <div class="label">COA Top Color Match</div>
+        Every batch has a visual identifier — the vial top color. We track the color from published COA photos so you can verify your vial matches what was tested.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p><strong>Strictly for laboratory research use only. Not for human consumption.</strong></p>
+  <div class="disclaimer-box">
+    <p>None of the statements on this site have been evaluated by the FDA or any regulatory authority. The Cleanliness Score is an editorial rating based on publicly available third-party test data and does not constitute an endorsement, recommendation, or safety certification. Always verify all data independently. We earn affiliate commissions from some linked vendors at no additional cost to you. This site does not provide medical advice. CleanPep © 2026. Data sources: Finnrick Analytics, Janoshik, community reports.</p>
+  </div>
+</footer>
+
+</body>
+</html>
