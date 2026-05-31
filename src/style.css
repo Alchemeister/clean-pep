@@ -278,6 +278,33 @@ h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: 0; }
 .score-card b { display: block; color: var(--green); font-size: 1.55rem; line-height: 1; margin-bottom: 0.45rem; }
 .score-card span { color: var(--ink); font-weight: 900; }
 .score-card p { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.88rem; }
+.coverage-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.55rem;
+  margin-bottom: 0.9rem;
+}
+.coverage-card {
+  padding: 0.75rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgb(255 255 255 / 0.09);
+  background: rgb(0 0 0 / 0.18);
+}
+.coverage-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.coverage-card strong {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--ink);
+  font-size: 1.35rem;
+  line-height: 1;
+}
 .panel-controls {
   display: flex;
   flex-wrap: wrap;

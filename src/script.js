@@ -207,16 +207,45 @@ function enhanceTables() {
 enhanceVendorCards();
 enhanceTables();
 
+function coverageVendors(product) {
+  const tableRows = Array.from(document.querySelectorAll('tbody tr'));
+  const vendors = tableRows.map((row) => row.children[1]?.textContent?.trim()).filter(Boolean);
+  if (vendors.length) return vendors;
+  return Array.from(document.querySelectorAll('.vendor-card h3')).map((heading) => heading.textContent.trim()).filter(Boolean);
+}
+
+function panelCoverage(product, keys) {
+  const vendors = coverageVendors(product);
+  return keys.map((key) => {
+    const verified = vendors.filter((vendor) => getEvidence(product, vendor).panels[key]?.status === 'verified').length;
+    return { key, verified, total: vendors.length };
+  });
+}
+
+function coverageMarkup(product) {
+  const rows = panelCoverage(product, ['solvents', 'tfa', 'endotoxin', 'content', 'identity']);
+  return rows.map(({ key, verified, total }) => `
+    <div class="coverage-card">
+      <span>${PANEL_LABELS[key]}</span>
+      <strong>${verified}/${total}</strong>
+    </div>
+  `).join('');
+}
+
 function addPanelFinder() {
   const cards = Array.from(document.querySelectorAll('.vendor-card'));
   if (!cards.length || document.querySelector('[data-panel-finder]')) return;
   const firstSection = cards[0].closest('section');
   if (!firstSection) return;
+  const product = currentProductKey();
   firstSection.insertAdjacentHTML('beforebegin', `
     <section class="data-section panel-finder" data-panel-finder data-reveal>
       <div class="section-heading">
         <div><p class="eyebrow">Find what actually passed</p><h2>Filter for loaded COA panels</h2></div>
         <button class="btn btn-outline" type="button" data-clear-panels>Clear</button>
+      </div>
+      <div class="coverage-stats" aria-label="Loaded panel proof coverage">
+        ${coverageMarkup(product)}
       </div>
       <div class="panel-controls" role="group" aria-label="Required COA panels">
         <label><input type="checkbox" value="solvents"> Residual solvents</label>
@@ -233,7 +262,6 @@ function addPanelFinder() {
   const inputs = Array.from(finder.querySelectorAll('input[type="checkbox"]'));
   const result = finder.querySelector('[data-panel-result]');
   const clear = finder.querySelector('[data-clear-panels]');
-  const product = currentProductKey();
 
   function applyPanelFilter() {
     const required = inputs.filter((input) => input.checked).map((input) => input.value);
@@ -256,7 +284,7 @@ function addPanelFinder() {
       result.textContent = 'Pick a panel to find vendors with public proof loaded.';
     } else if (matches === 0) {
       const names = required.map((key) => PANEL_LABELS[key]).join(' + ');
-      result.textContent = `No ${names} match is loaded yet for this product. Treat the visible vendors as a COA collection queue, not a clean-panel shortlist.`;
+      result.textContent = `0 vendors with loaded public proof for ${names} on this product.`;
     } else {
       result.textContent = `${matches} vendor${matches === 1 ? '' : 's'} with public proof loaded for the selected panel${required.length === 1 ? '' : 's'}.`;
     }
