@@ -136,7 +136,7 @@ function scoreEvidence(panels) {
 function scoreLabel(score) {
   if (score >= 80) return 'Deep panel';
   if (score >= 55) return 'Good coverage';
-  if (score >= 35) return 'Thin evidence';
+  if (score >= 35) return 'Needs review';
   return 'Purity-first only';
 }
 
@@ -177,9 +177,9 @@ function enhanceVendorCards() {
         <div class="evidence-score"><span>${score}</span><small>/100 ${scoreLabel(score)}</small></div>
         <div class="panel-strip">${panelMarkup(evidence.panels)}</div>
         <div class="evidence-popover" role="tooltip">
-          <strong>Safety-panel depth, not just purity</strong>
+          <strong>Loaded public COA panels</strong>
           <ul>${panelListMarkup(evidence.panels)}</ul>
-          <p>Missing panels are treated as risk signals until a public batch COA proves otherwise.</p>
+          <p>No green chip means CleanPep has not loaded public proof for that panel yet.</p>
         </div>
       </div>
     `);
@@ -206,3 +206,67 @@ function enhanceTables() {
 
 enhanceVendorCards();
 enhanceTables();
+
+function addPanelFinder() {
+  const cards = Array.from(document.querySelectorAll('.vendor-card'));
+  if (!cards.length || document.querySelector('[data-panel-finder]')) return;
+  const firstSection = cards[0].closest('section');
+  if (!firstSection) return;
+  firstSection.insertAdjacentHTML('beforebegin', `
+    <section class="data-section panel-finder" data-panel-finder data-reveal>
+      <div class="section-heading">
+        <div><p class="eyebrow">Find what actually passed</p><h2>Filter for loaded COA panels</h2></div>
+        <button class="btn btn-outline" type="button" data-clear-panels>Clear</button>
+      </div>
+      <div class="panel-controls" role="group" aria-label="Required COA panels">
+        <label><input type="checkbox" value="solvents"> Residual solvents</label>
+        <label><input type="checkbox" value="tfa"> TFA</label>
+        <label><input type="checkbox" value="endotoxin"> Endotoxin</label>
+        <label><input type="checkbox" value="content"> Content/fill</label>
+        <label><input type="checkbox" value="identity"> Identity match</label>
+      </div>
+      <div class="finder-result" data-panel-result>Pick a panel to find vendors with public proof loaded.</div>
+    </section>
+  `);
+
+  const finder = document.querySelector('[data-panel-finder]');
+  const inputs = Array.from(finder.querySelectorAll('input[type="checkbox"]'));
+  const result = finder.querySelector('[data-panel-result]');
+  const clear = finder.querySelector('[data-clear-panels]');
+  const product = currentProductKey();
+
+  function applyPanelFilter() {
+    const required = inputs.filter((input) => input.checked).map((input) => input.value);
+    let matches = 0;
+    cards.forEach((card) => {
+      const vendor = card.querySelector('h3')?.textContent?.trim();
+      const evidence = getEvidence(product, vendor);
+      const passes = required.length === 0 || required.every((key) => evidence.panels[key]?.status === 'verified');
+      card.classList.toggle('panel-hidden', !passes);
+      if (passes) matches += 1;
+    });
+    document.querySelectorAll('tbody tr').forEach((row) => {
+      const vendor = row.children[1]?.textContent?.trim();
+      const evidence = getEvidence(product, vendor);
+      const passes = required.length === 0 || required.every((key) => evidence.panels[key]?.status === 'verified');
+      row.classList.toggle('panel-hidden', !passes);
+    });
+
+    if (!required.length) {
+      result.textContent = 'Pick a panel to find vendors with public proof loaded.';
+    } else if (matches === 0) {
+      const names = required.map((key) => PANEL_LABELS[key]).join(' + ');
+      result.textContent = `No ${names} match is loaded yet for this product. Treat the visible vendors as a COA collection queue, not a clean-panel shortlist.`;
+    } else {
+      result.textContent = `${matches} vendor${matches === 1 ? '' : 's'} with public proof loaded for the selected panel${required.length === 1 ? '' : 's'}.`;
+    }
+  }
+
+  inputs.forEach((input) => input.addEventListener('change', applyPanelFilter));
+  clear.addEventListener('click', () => {
+    inputs.forEach((input) => { input.checked = false; });
+    applyPanelFilter();
+  });
+}
+
+addPanelFinder();
