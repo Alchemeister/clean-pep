@@ -137,6 +137,25 @@ nav .links a:hover, nav .links a.active { color: var(--text); }
 }
 .card .card-btn:hover { opacity: 0.9; }
 
+/* ─── Affiliate Link Indicator ─── */
+a[target="_blank"] .card::after {
+  content: "🔗 Visit Site →";
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+a[target="_blank"]:hover .card::after { opacity: 1; }
+a[target="_blank"] .card {
+  position: relative;
+  cursor: pointer;
+}
+
 /* ─── Expandable Full List ─── */
 .expand-toggle {
   display: flex; align-items: center; gap: 0.5rem; cursor: pointer;
