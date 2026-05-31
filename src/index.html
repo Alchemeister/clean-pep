@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CleanPep - Peptide vendor testing transparency</title>
-<meta name="description" content="A source-first peptide vendor comparison dashboard based on public third-party testing pages, with conservative rankings and live verification links.">
+<title>CleanPep - Peptide COA depth and vendor transparency</title>
+<meta name="description" content="A source-first peptide vendor comparison dashboard that separates headline purity from deeper COA panels like TFA, residual solvents, endotoxin, content, and identity.">
 <link rel="preload" as="image" href="assets/cleanpep-data-field.png">
 <link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
@@ -18,8 +18,8 @@
   <section class="hero home-hero" data-reveal>
     <div class="hero-copy">
       <div class="eyebrow">Peptide vendor rankings without the affiliate fog</div>
-      <h1>See who publishes real testing, then verify it yourself.</h1>
-      <p class="sub">CleanPep turns public lab-ranking pages into a fast research dashboard. The design now separates source-backed rows from anything that still needs a live check.</p>
+      <h1>Rank the deeper COAs, not just the pretty purity number.</h1>
+      <p class="sub">CleanPep separates headline purity from harder COA panels: TFA, residual solvents, endotoxin, content, and identity match.</p>
       <div class="hero-actions"><a class="btn btn-accent" href="retatrutide.html">Start with Retatrutide</a><a class="btn btn-outline" href="coa-guide.html">Read the COA guide</a></div>
     </div>
     <div class="hero-panel" aria-label="CleanPep data snapshot">
@@ -33,9 +33,18 @@
     <div class="source-bar" data-reveal>
   <div class="src-item"><span class="src-dot live"></span> Finnrick public homepage: 7,829 samples, 224 vendors, 15 peptides</div>
   <div class="src-item"><span class="src-dot live"></span> Source date: 29 May 2026</div>
-  <div class="src-item"><span class="src-dot caution"></span> Snapshot checked against Finnrick public homepage on 29 May 2026. Verify live before acting.</div>
+  <div class="src-item"><span class="src-dot caution"></span> Finnrick rank is one input. Missing safety panels now count against evidence depth.</div>
   
 </div>
+    <section class="data-section" data-reveal>
+      <div class="section-heading"><div><p class="eyebrow">New scoring posture</p><h2>Safety panels beat purity-only PDFs</h2></div><a class="text-link" href="coa-guide.html">How to read the score</a></div>
+      <div class="score-grid">
+        <div class="score-card"><b>30</b><span>Identity match</span><p>A clean chromatogram is not enough if the report does not prove the vial is the compound being sold.</p></div>
+        <div class="score-card"><b>20</b><span>Content / fill</span><p>Amount matters. Underfilled or mis-assayed material should not hide behind a high purity percentage.</p></div>
+        <div class="score-card"><b>45</b><span>TFA + solvents + endotoxin</span><p>Vendors who pay for larger contamination panels should rank higher than vendors posting purity-only PDFs.</p></div>
+        <div class="score-card"><b>5</b><span>Traceable source</span><p>Batch-specific, lab-verifiable evidence beats screenshots, marketing claims, and stale source rows.</p></div>
+      </div>
+    </section>
     <section class="data-section">
       <div class="section-heading"><div><p class="eyebrow">Research dashboard</p><h2>Product lanes</h2></div><input class="filter-input" type="search" placeholder="Search products or top vendors" data-filter=".product-card"></div>
       <div class="product-grid"><a class="product-card" href="retatrutide.html" data-reveal data-search="retatrutide paradigm peptide">
