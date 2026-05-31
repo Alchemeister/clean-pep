@@ -186,6 +186,25 @@ h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.25rem); letter-spacing: 0; }
 .product-card h3, .vendor-card h3 { margin: 0.55rem 0; font-size: 1.2rem; letter-spacing: 0; }
 .product-card p, .vendor-card p { color: var(--muted); margin: 0 0 1rem; font-size: 0.92rem; }
 .product-meta, .card-topline, .card-actions { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
+.source-only-card {
+  border-color: rgb(247 183 92 / 0.18);
+  background: rgb(247 183 92 / 0.045);
+}
+.source-only-note {
+  display: inline-flex;
+  margin-bottom: 0.65rem;
+  padding: 0.22rem 0.48rem;
+  border-radius: 999px;
+  color: var(--amber);
+  border: 1px solid rgb(247 183 92 / 0.32);
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.source-only-section {
+  background: rgb(247 183 92 / 0.035);
+}
 .evidence-summary {
   position: relative;
   margin-top: 1rem;

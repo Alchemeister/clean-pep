@@ -170,6 +170,11 @@ function enhanceVendorCards() {
   document.querySelectorAll('.vendor-card').forEach((card) => {
     const vendor = card.querySelector('h3')?.textContent?.trim();
     if (!vendor || card.querySelector('.evidence-summary')) return;
+    const hasVendorUrl = Boolean(card.querySelector('.card-actions .card-btn.primary'));
+    card.classList.toggle('source-only-card', !hasVendorUrl);
+    if (!hasVendorUrl && !card.querySelector('.source-only-note')) {
+      card.insertAdjacentHTML('afterbegin', '<div class="source-only-note">Source-only row: no working vendor URL loaded</div>');
+    }
     const evidence = getEvidence(product, vendor);
     const score = scoreEvidence(evidence.panels);
     card.insertAdjacentHTML('beforeend', `
@@ -183,6 +188,31 @@ function enhanceVendorCards() {
         </div>
       </div>
     `);
+  });
+}
+
+function demoteSourceOnlyCards() {
+  document.querySelectorAll('.featured-grid').forEach((grid) => {
+    const cards = Array.from(grid.querySelectorAll('.vendor-card'));
+    const sourceOnly = cards.filter((card) => card.classList.contains('source-only-card'));
+    const linked = cards.filter((card) => !card.classList.contains('source-only-card'));
+    if (!sourceOnly.length || !linked.length || grid.dataset.sourceOnlyDemoted === 'true') return;
+    const section = grid.closest('section');
+    if (!section) return;
+    const archive = document.createElement('section');
+    archive.className = 'data-section source-only-section';
+    archive.setAttribute('data-reveal', '');
+    archive.innerHTML = `
+      <div class="section-heading">
+        <div><p class="eyebrow">Audit only</p><h2>Source-only rows</h2></div>
+      </div>
+      <p class="fine-print">These names appear in a public source snapshot, but CleanPep has no working vendor URL loaded. They are kept for audit context, not ranked as clickable vendor candidates.</p>
+      <div class="featured-grid"></div>
+    `;
+    const archiveGrid = archive.querySelector('.featured-grid');
+    sourceOnly.forEach((card) => archiveGrid.appendChild(card));
+    section.insertAdjacentElement('afterend', archive);
+    grid.dataset.sourceOnlyDemoted = 'true';
   });
 }
 
@@ -208,7 +238,10 @@ enhanceVendorCards();
 enhanceTables();
 
 function coverageVendors(product) {
-  const tableRows = Array.from(document.querySelectorAll('tbody tr'));
+  const shortlistCards = Array.from(document.querySelectorAll('.vendor-card:not(.source-only-card)'));
+  const cardVendors = shortlistCards.map((card) => card.querySelector('h3')?.textContent?.trim()).filter(Boolean);
+  if (cardVendors.length) return cardVendors;
+  const tableRows = Array.from(document.querySelectorAll('tbody tr')).filter((row) => row.querySelector('a[href^="https://"]'));
   const vendors = tableRows.map((row) => row.children[1]?.textContent?.trim()).filter(Boolean);
   if (vendors.length) return vendors;
   return Array.from(document.querySelectorAll('.vendor-card h3')).map((heading) => heading.textContent.trim()).filter(Boolean);
@@ -233,7 +266,7 @@ function coverageMarkup(product) {
 }
 
 function addPanelFinder() {
-  const cards = Array.from(document.querySelectorAll('.vendor-card'));
+  const cards = Array.from(document.querySelectorAll('.vendor-card:not(.source-only-card)'));
   if (!cards.length || document.querySelector('[data-panel-finder]')) return;
   const firstSection = cards[0].closest('section');
   if (!firstSection) return;
@@ -297,4 +330,5 @@ function addPanelFinder() {
   });
 }
 
+demoteSourceOnlyCards();
 addPanelFinder();
