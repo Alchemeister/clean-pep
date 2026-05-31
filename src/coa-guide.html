@@ -3,114 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to Read a Peptide COA — CleanPep</title>
-<meta name="description" content="Don't get fooled by '99% purity.' Learn the 5 panels every real COA should show, the red flags vendors use to hide contamination data, and how to verify COA top color.">
+<title>How to Read a Peptide COA - CleanPep</title>
+<meta name="description" content="A conservative COA verification guide focused on batch numbers, third-party labs, and contamination panels.">
+<link rel="preload" as="image" href="assets/cleanpep-data-field.png">
 <link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
-<body>
-
-<nav>
-  <div><a href="/" class="logo">🧪 CleanPep <span>v2 — May 2026</span></a></div>
-  <div class="links">
-    <a href="retatrutide.html">Reta</a>
-    <a href="tirzepatide.html">Tirz</a>
-    <a href="semaglutide.html">Sema</a>
-    <a href="bpc157.html">BPC/TB</a>
-    <a href="ipamorelin.html">Ipa</a>
-    <a href="ghk-cu.html">GHK-Cu</a>
-    <a href="cjc-1295.html">CJC</a>
-    <a href="tesamorelin.html">Tesa</a>
-    <a href="more-products.html">More</a>
-    <a href="all-products.html">All</a>
-    <a href="coa-guide.html" class="active">COA Guide</a>
-    <a href="about.html">About</a>
+<body><nav class="site-nav">
+  <a href="index.html" class="brand" aria-label="CleanPep home"><span class="brand-mark">CP</span><span>CleanPep</span><small>May 2026 source snapshot</small></a>
+  <div class="nav-links"><a href="retatrutide.html">Retatrutide</a><a href="tirzepatide.html">Tirzepatide</a><a href="semaglutide.html">Semaglutide</a><a href="bpc157.html">BPC/TB</a><a href="ipamorelin.html">Ipamorelin</a><a href="ghk-cu.html">GHK-Cu</a><a href="cjc-1295.html">CJC-1295</a><a href="tesamorelin.html">Tesamorelin</a><a href="more-products.html">More</a><a href="all-products.html">All</a><a href="coa-guide.html" class="active">COA Guide</a><a href="about.html">About</a></div>
+</nav><main class="container page-shell"><section class="hero compact" data-reveal><div class="eyebrow">Verification guide</div><h1>Read the COA before you read the marketing.</h1><p class="sub">A purity percentage by itself is not a full quality story. Use this checklist to separate useful third-party evidence from decorative PDFs.</p></section>
+<section class="method-grid wide" data-reveal><div class="method-item"><div class="label">1. Identity and batch</div>Look for peptide identity, lot or batch number, test date, and a lab report identifier you can verify.</div><div class="method-item"><div class="label">2. HPLC purity</div>Useful baseline, but it does not cover every contamination risk by itself.</div><div class="method-item"><div class="label">3. Quantity</div>Check whether the vial contains the claimed amount, not just whether the main peak is clean.</div><div class="method-item"><div class="label">4. Extra panels</div>Residual solvents, TFA, heavy metals, and endotoxin testing are stronger transparency signals when available.</div><div class="method-item"><div class="label">5. Independent lookup</div>Open the lab or Finnrick verification source directly. Do not rely on a screenshot alone.</div><div class="method-item"><div class="label">6. Match the physical vial</div>If batch, date, vendor, or visible vial details do not match, treat the COA as unproven for that item.</div></section>
+<div class="notice danger" data-reveal><strong>Red flag:</strong> A PDF that says 99% purity but has no independent lab lookup, batch number, date, or quantity result is not enough evidence.</div>
+<section class="data-section" data-reveal><h2>Verification links</h2><div class="link-grid"><a href="https://www.finnrick.com/vendors" target="_blank" rel="noopener">Finnrick vendors</a><a href="https://www.finnrick.com/products" target="_blank" rel="noopener">Finnrick products</a><a href="https://janoshik.com/verification" target="_blank" rel="noopener">Janoshik verification</a><a href="https://www.reddit.com/r/saferpeptides" target="_blank" rel="noopener">Community cross-checks</a></div></section>
+</main><footer>
+  <p><strong>Research-use-only information. Not medical advice. Not a safety certification.</strong></p>
+  <div class="disclaimer-box">
+    <p>CleanPep is an editorial comparison layer built from public third-party testing pages. Rankings can change. Verify directly at <a href="https://www.finnrick.com/" target="_blank" rel="noopener">Finnrick</a> and individual lab verification pages such as <a href="https://janoshik.com/verification" target="_blank" rel="noopener">Janoshik</a>. Affiliate links may appear, but vendors cannot buy ranking position here.</p>
   </div>
-</nav>
-
-<div class="container">
-  <section class="hero">
-    <h1>How to Read a Real COA<br><em>(Without Getting Fooled)</em></h1>
-    <p class="sub">"99% purity" means nothing if your vial is 40% residual solvent. Here's what every Certificate of Analysis should actually show — and the tricks vendors use to hide what matters.</p>
-  </section>
-
-  <div class="method" style="margin-bottom:2rem">
-    <h3>🔍 The 5 Panels That Actually Matter</h3>
-    <div class="method-grid">
-      <div class="method-item">
-        <div class="label">1. HPLC Purity (%)</div>
-        Table stakes. Tells you percentage of the main peptide peak. The trap: only measures peptide-related impurities — NOT solvents, metals, or TFA. Necessary but NOT sufficient.
-      </div>
-      <div class="method-item">
-        <div class="label">2. Quantitative TFA (% or ppm)</div>
-        How much trifluoroacetic acid counter-ion is in your peptide. Your "10mg vial" could contain 7mg peptide + 3mg TFA. Always look for TFA ≤1% or ≤10,000 ppm. This is the #1 thing vendors hide.
-      </div>
-      <div class="method-item">
-        <div class="label">3. Residual Solvents (GC-MS)</div>
-        Manufacturing solvents — acetonitrile, DMF, dichloromethane — left behind after synthesis. A 2023 Belgian study found 5 of 12 "high purity" vendors had solvent levels above safety thresholds. Finnrick includes this in their standard panel.
-      </div>
-      <div class="method-item">
-        <div class="label">4. Heavy Metals (ICP-MS)</div>
-        Palladium, platinum, and other synthesis catalysts with strict pharmaceutical limits. Almost no peptide vendor tests for this voluntarily. If a vendor shows ICP-MS results, that's a massive trust signal.
-      </div>
-      <div class="method-item">
-        <div class="label">5. Endotoxins (LAL Test)</div>
-        Bacterial endotoxin contamination (EU/mg). Critical for anything intended to be sterile. Finnrick now offers this as a paid add-on. Very few vendors include it voluntarily.
-      </div>
-    </div>
-  </div>
-
-  <div class="method" style="border-left:3px solid var(--danger);margin-bottom:2rem">
-    <h3>🚩 Red Flags on a COA</h3>
-    <ul style="padding-left:1.5rem;color:var(--text-dim);line-height:2">
-      <li>No batch/lot number — can't trace the test to your vial</li>
-      <li>No date — could be from 3 years ago</li>
-      <li>"99.X%" with no other panels — the most common scam</li>
-      <li>Self-issued COA with no 3rd party lab name</li>
-      <li>PDF that looks like it was made in Microsoft Word — fake COA template factories are everywhere</li>
-      <li>"TFA removed" claim with no quantitative proof — if they can't show ppm, they didn't test</li>
-      <li>COA top color doesn't match your vial — different color = different batch = this COA isn't yours</li>
-    </ul>
-  </div>
-
-  <div class="method" style="border-left:3px solid var(--accent);margin-bottom:2rem">
-    <h3>✅ Green Flags — Trust Signals</h3>
-    <ul style="padding-left:1.5rem;color:var(--text-dim);line-height:2">
-      <li>3rd party lab name visible — Janoshik, MZ Biolabs, Finnrick</li>
-      <li>Batch number that matches your vial</li>
-      <li>Full panel: HPLC + TFA quant + solvents + metals</li>
-      <li>Endotoxin test included voluntarily — this is rare and valuable</li>
-      <li>Finnrick has tested this vendor and scores are public</li>
-      <li>Multiple labs have tested the same batch — consensus > single source</li>
-      <li>COA photo shows the actual vial with visible top color — not just a data table</li>
-    </ul>
-  </div>
-
-  <div class="method">
-    <h3>🔵 COA Top Color — Verify Your Vial Matches</h3>
-    <p style="color:var(--text-dim);margin-bottom:1rem">Every test batch has a visual identifier — the color of the vial cap (top). Vendors use different colors for different batches. When you receive a vial, check:</p>
-    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
-      <div style="display:flex;align-items:center;gap:.5rem"><span class="color-swatch color-blue"></span> <strong>Blue top:</strong> Does the COA photo show a blue-top vial?</div>
-      <div style="display:flex;align-items:center;gap:.5rem"><span class="color-swatch color-green"></span> <strong>Green top:</strong> Match it to the published COA.</div>
-      <div style="display:flex;align-items:center;gap:.5rem"><span class="color-swatch color-clear"></span> <strong>Clear/Silver:</strong> Common for domestic US vendors.</div>
-      <div style="display:flex;align-items:center;gap:.5rem"><span class="color-swatch color-red"></span> <strong>Red:</strong> Rarer. Always verify against COA photo.</div>
-    </div>
-    <p style="color:var(--danger);font-size:.85rem">⚠ If the COA shows a blue-top vial and yours has a green top — the COA is NOT for your batch. This is the simplest verification anyone can do, and it's the one vendors least expect you to check.</p>
-  </div>
-
-  <div class="method">
-    <h3>🌐 Where to Verify</h3>
-    <ul style="padding-left:1.5rem;line-height:2">
-      <li><a href="https://finnrick.com/vendors" target="_blank">Finnrick Vendor Ratings</a> — A/B/C confidence tiers, 224 vendors</li>
-      <li><a href="https://finnrick.com/products" target="_blank">Finnrick Product Data</a> — per-product test summaries</li>
-      <li><a href="https://janoshik.com/verification" target="_blank">Janoshik COA Verification</a> — individual COA lookup</li>
-      <li><a href="https://www.reddit.com/r/saferpeptides" target="_blank">r/saferpeptides</a> — community cross-referencing</li>
-    </ul>
-  </div>
-</div>
-
-<footer>
-  <p><strong>Strictly for laboratory research use only. Not for human consumption.</strong></p>
-  <div class="disclaimer-box"><p>Always cross-reference COAs with 3rd party lab databases. A COA PDF can be fabricated — the only real verification is checking the lab's own website. CleanPep © 2026.</p></div>
-</footer>
-</body>
-</html>
+</footer></body></html>
