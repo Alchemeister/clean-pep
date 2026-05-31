@@ -177,7 +177,7 @@ function enhanceVendorCards() {
         <div class="evidence-score"><span>${score}</span><small>/100 ${scoreLabel(score)}</small></div>
         <div class="panel-strip">${panelMarkup(evidence.panels)}</div>
         <div class="evidence-popover" role="tooltip">
-          <strong>Loaded public COA panels</strong>
+          <strong>Loaded public proof panels</strong>
           <ul>${panelListMarkup(evidence.panels)}</ul>
           <p>No green chip means CleanPep has not loaded public proof for that panel yet.</p>
         </div>
@@ -241,7 +241,7 @@ function addPanelFinder() {
   firstSection.insertAdjacentHTML('beforebegin', `
     <section class="data-section panel-finder" data-panel-finder data-reveal>
       <div class="section-heading">
-        <div><p class="eyebrow">Find what actually passed</p><h2>Filter for loaded COA panels</h2></div>
+        <div><p class="eyebrow">Find what actually passed</p><h2>Filter for loaded proof panels</h2></div>
         <button class="btn btn-outline" type="button" data-clear-panels>Clear</button>
       </div>
       <div class="coverage-stats" aria-label="Loaded panel proof coverage">
