@@ -151,7 +151,7 @@ nav .links a:hover, nav .links a.active { color: var(--text); }
 /* ─── Table ─── */
 .table-wrap { overflow-x: auto; margin-bottom: 2rem; }
 table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-thead { position: sticky; top: 60px; z-index: 10; }
+thead { position: sticky; top: 72px; z-index: 10; }
 th {
   background: var(--bg-card); color: var(--text-dim); font-weight: 600;
   padding: 0.6rem 0.75rem; text-align: left; border-bottom: 2px solid var(--border);
