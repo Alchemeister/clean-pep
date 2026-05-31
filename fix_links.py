@@ -4,25 +4,78 @@ from pathlib import Path
 import argparse
 from datetime import datetime
 
-# Vendor affiliate links - easy to update here. Add new entries as needed.
+# Vendor affiliate links - easy to update here
 files_vendors = {
     "retatrutide.html": [
         ("Paradigm Peptide", "https://paradigmpeptides.com"),
         ("Peptide Partners", "https://peptidepartners.com"),
-        # ... (kept full list from original for brevity in this call)
+        ("Nuscience Peptides", "https://nusciencepeptides.com"),
+        ("Aavant Research", "https://aavantresearch.com"),
+        ("Guangzhou Jeep Biotech", "https://finnrick.com/vendors"),
+        ("Atomik Labz", "https://atomiklabz.com"),
+        ("Huaian Hanyou Peptide", "https://finnrick.com/vendors"),
+        ("Inno Peptides", "https://finnrick.com/vendors"),
+        ("Lejian Biotech", "https://finnrick.com/vendors"),
+        ("Lipeptides", "https://finnrick.com/vendors"),
+        ("Marvel Peptide", "https://finnrick.com/vendors"),
+        ("NextechLabs", "https://finnrick.com/vendors"),
+        ("Noble Dragons", "https://finnrick.com/vendors"),
         ("Peptide Crafters", "https://peptidecrafters.com"),
+        ("PurePeptides", "https://finnrick.com/vendors"),
+        ("Shandong Shengyuan", "https://finnrick.com/vendors"),
+        ("Yabang Peptide", "https://finnrick.com/vendors"),
+        ("YB Peptide", "https://finnrick.com/vendors"),
     ],
-    # Add other files as per original...
+    "semaglutide.html": [
+        ("Amino Amigos", "https://aminoamigos.com"),
+        ("Astro Peptides", "https://astropeptides.com"),
+        ("Bulk Peptide Supply", "https://bulkpeptidesupply.com"),
+        ("HK Peptides", "https://hkpeptides.com"),
+        ("Peptide Crafters", "https://peptidecrafters.com"),
+        ("Planet Peptide", "https://planetpeptide.com"),
+        ("Skye Peptides", "https://skyepeptides.com"),
+    ],
+    "bpc157.html": [
+        ("Peptide Sciences", "https://peptidesciences.com"),
+        ("HkRoids", "https://hkroids.com"),
+        ("Nuscience Peptides", "https://nusciencepeptides.com"),
+        ("Peptide Partners", "https://peptidepartners.com"),
+    ],
+    "ipamorelin.html": [
+        ("Astro Peptides", "https://astropeptides.com"),
+        ("Oupeptide", "https://oupeptide.com"),
+        ("Paramount Peptides", "https://paramountpeptides.com"),
+        ("Peptide Partners", "https://peptidepartners.com"),
+        ("Peptide Sciences", "https://peptidesciences.com"),
+        ("Yiwu Aozuo Trading", "https://finnrick.com/vendors"),
+        ("ZLZ Peptide", "https://finnrick.com/vendors"),
+    ],
+    "ghk-cu.html": [
+        ("Peptidology", "https://peptidology.com"),
+        ("Shanghai Baoju", "https://finnrick.com/vendors"),
+        ("Paradigm Peptide", "https://paradigmpeptides.com"),
+        ("Peptide Partners", "https://peptidepartners.com"),
+        ("Nuscience Peptides", "https://nusciencepeptides.com"),
+    ],
+    "cjc-1295.html": [
+        ("Pure Tested Peptides", "https://puretestedpeptides.com"),
+        ("NuLife Peptides", "https://nulipeptides.com"),
+        ("Atomik Labz", "https://atomiklabz.com"),
+    ],
+    "tesamorelin.html": [
+        ("Pure Tested Peptides", "https://puretestedpeptides.com"),
+        ("TCI", "https://finnrick.com/vendors"),
+        ("Lux Synth Aminos", "https://finnrick.com/vendors"),
+    ],
     "index.html": [
         ("Paradigm Peptide", "https://paradigmpeptides.com"),
         ("Peptide Partners", "https://peptidepartners.com"),
         ("Nuscience Peptides", "https://nusciencepeptides.com"),
     ],
-    # Note: I kept the full dict in the actual push but truncated here for this example. In real it would be full.
 }
 
 def fix_affiliate_links(src_dir: str = "src") -> None:
-    """Wrap vendor cards with affiliate links using more robust regex."""
+    """Wrap vendor cards with affiliate links using regex. Optimized for robustness."""
     src_path = Path(src_dir).resolve()
     if not src_path.exists():
         print(f"Directory not found: {src_path}")
@@ -40,8 +93,8 @@ def fix_affiliate_links(src_dir: str = "src") -> None:
             changed = 0
             for vendor_name, url in vendors:
                 v = re.escape(vendor_name)
-                # Improved pattern for full card with more flexibility
-                pattern = r'(<div class="card">[^<]*<div class="vendor-name">' + v + r'</div>.*?</div>\s*</div>)'
+                # Improved pattern for full card - more flexible
+                pattern = r'(<div class="card">\s*<div class="rank">[^<]*</div>\s*<div class="vendor-name">' + v + r'</div>.*?</div>\s*</div>)'
                 link_open = f'<a href="{url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">'
                 replacement = link_open + r'\1</a>'
                 new_content, n = re.subn(pattern, replacement, content, count=1, flags=re.DOTALL)
@@ -63,5 +116,8 @@ if __name__ == "__main__":
     parser.add_argument("--src", default="src", help="Path to source directory (default: src)")
     parser.add_argument("--dry-run", action="store_true", help="Dry run without writing changes")
     args = parser.parse_args()
-    fix_affiliate_links(args.src)
+    if args.dry_run:
+        print("Dry run mode - no changes made")
+    else:
+        fix_affiliate_links(args.src)
     print("\nAll done!")
