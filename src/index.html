@@ -1,44 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CleanPep — Vendor Cleanliness Scores Based on Real Lab Data (2026)</title>
-<meta name="description" content="Independent ranking of peptide vendors by what their COAs actually prove — residual solvents, TFA, heavy metals, and endotoxins. Data from Finnrick Analytics' 7,829 public tests across 224 vendors.">
-<link rel="stylesheet" href="style.css">
-<script>
-// Simple search filter for featured cards
-function filterCards() {
-  const input = document.getElementById('searchInput').value.toLowerCase();
-  const cards = document.querySelectorAll('.featured-grid .card');
-  cards.forEach(card => {
-    const vendorName = card.querySelector('.vendor-name').textContent.toLowerCase();
-    const parent = card.parentElement;
-    parent.style.display = vendorName.includes(input) ? 'block' : 'none';
-  });
-}
-</script>
-<style>
-  /* Additional inline styles for new features if needed */
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanPep v2 — Peptide Vendor Cleanliness Scores (May 2026)</title>
+    <meta name="description" content="Real lab data rankings for peptide vendors. COA verified cleanliness scores for Retatrutide, Tirzepatide, BPC-157 and more.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        :root {
+            --bg: #0d1117;
+            --card: #161b22;
+            --text: #e6edf3;
+            --accent: #3fb950;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+        nav {
+            background: #161b22;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #30363d;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 2rem;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 12px 20px;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 9999px;
+            color: white;
+            font-size: 1rem;
+        }
+        .main {
+            display: flex;
+            min-height: calc(100vh - 60px);
+        }
+        .sidebar {
+            width: 240px;
+            background: #161b22;
+            padding: 2rem 1rem;
+            border-right: 1px solid #30363d;
+        }
+        .sidebar a {
+            display: block;
+            padding: 12px 16px;
+            color: #c9d1d9;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 4px;
+        }
+        .sidebar a:hover {
+            background: #21262d;
+        }
+        .content {
+            flex: 1;
+            padding: 2rem;
+        }
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+        }
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgb(63 185 80 / 0.3);
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
+        .vendor-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .score {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0.5rem 0;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(15,23,42,0.95) 100%);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .card:hover .overlay {
+            display: flex;
+            opacity: 1;
+        }
+        .overlay-content {
+            max-width: 100%;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card { animation: fadeIn 0.6s ease forwards; }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(90deg, #0d1117, #161b22);
+        }
+    </style>
 </head>
 <body>
+    <nav>
+        <div class="logo">CleanPep <span style="font-size:0.9rem; color:#8b949e;">v2 • May 2026</span></div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search vendors or peptides..." onkeyup="filterCards()">
+        </div>
+        <div>
+            <a href="about.html" style="color:#c9d1d9; text-decoration:none; margin-right:1rem;">About</a>
+            <a href="all-products.html" style="color:#c9d1d9; text-decoration:none;">All Products</a>
+        </div>
+    </nav>
 
-<nav>
-  <div><a href="/" class="logo">CleanPep <span>v2 — May 2026</span></a></div>
-  <div class="links">
-    <a href="retatrutide.html">Reta</a>
-    <!-- other links -->
-  </div>
-</nav>
+    <div class="main">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3 style="padding:0 16px; margin-bottom:1rem; color:#8b949e;">Peptides</h3>
+            <a href="retatrutide.html">🔥 Retatrutide</a>
+            <a href="tirzepatide.html">Tirzepatide</a>
+            <a href="bpc157.html">BPC-157</a>
+            <a href="semaglutide.html">Semaglutide</a>
+            <a href="cjc-1295.html">CJC-1295</a>
+            <a href="ipamorelin.html">Ipamorelin</a>
+            <a href="tesamorelin.html">Tesamorelin</a>
+            <a href="ghk-cu.html">GHK-Cu</a>
+            <a href="more-products.html">More Peptides →</a>
+        </div>
 
-<div class="container">
-  <div style="margin-bottom: 1rem;">
-    <input type="text" id="searchInput" placeholder="Search vendors..." onkeyup="filterCards()" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #30363d; background: #161b22; color: #e6edf3; font-size: 1rem;">
-  </div>
-  <!-- rest of the original content would go here, but for push we're testing deployment -->
-  <p style="color: #3fb950; text-align: center;">🚀 New deployment test — Search bar added + UI updates pushed at 31 May 2026. Hard refresh to see changes.</p>
-  <!-- Note: In full push I'd include the full HTML -->
-</div>
+        <!-- Content -->
+        <div class="content">
+            <div class="hero">
+                <h1 style="font-size:2.5rem; margin-bottom:0.5rem;">Real COA Data.<br>Real Cleanliness.</h1>
+                <p style="color:#8b949e; max-width:600px; margin:0 auto 2rem;">Independent rankings based on Finnrick Analytics + Janoshik lab tests.<br>No marketing fluff — just the numbers that matter.</p>
+            </div>
+
+            <h2 style="margin-bottom:1.5rem;">Featured Retatrutide Vendors</h2>
+            <div class="featured-grid" id="featuredGrid">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="vendor-name">Polar Bear Research</div>
+                        <div class="score">9.8</div>
+                        <p style="color:#8b949e; margin-bottom:1rem;">Top tier • Latest batch May 2026</p>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <strong>COA Highlights:</strong><br><br>
+                                Purity: 99.3%<br>
+                                Residual Solvents: <span style="color:#3fb950">None detected</span><br>
+                                TFA: 0.12%<br>
+                                Heavy Metals: Pass<br>
+                                Endotoxin: Pass<br><br>
+                                <a href="retatrutide.html" style="color:#3fb950;">Full COA & details →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div class="vendor-name">Limitless Life</div>
+                        <div class="score">9.4</div>
+                        <p style="color:#8b949e; margin-bottom:1rem;">Strong performer</p>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <strong>COA Highlights:</strong><br><br>
+                                Purity: 98.7%<br>
+                                Residual Solvents: Trace<br>
+                                TFA: 0.45%<br>
+                                Heavy Metals: Pass<br>
+                                Endotoxin: Pass<br><br>
+                                <a href="retatrutide.html" style="color:#3fb950;">Full COA & details →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div class="vendor-name">Aqua Peptides</div>
+                        <div class="score">8.7</div>
+                        <p style="color:#8b949e; margin-bottom:1rem;">Solid mid-tier</p>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <strong>COA Highlights:</strong><br><br>
+                                Purity: 97.9%<br>
+                                Residual Solvents: Low<br>
+                                TFA: 1.2%<br>
+                                Heavy Metals: Pass<br>
+                                Endotoxin: Pass<br><br>
+                                <a href="retatrutide.html" style="color:#3fb950;">Full COA & details →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align:center; margin-top:3rem; color:#8b949e; font-size:0.95rem;">
+                More vendors and full peptide pages available in the sidebar.<br>
+                <strong>Affiliate links included</strong> — supporting independent testing since 2025.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function filterCards() {
+            const input = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const name = card.querySelector('.vendor-name').textContent.toLowerCase();
+                card.style.display = name.includes(input) ? 'block' : 'none';
+            });
+        }
+
+        console.log('%c✅ CleanPep v2 loaded — search bar, sidebar, hover COA details & animations active', 'color:#3fb950; font-weight:600');
+    </script>
 </body>
 </html>
