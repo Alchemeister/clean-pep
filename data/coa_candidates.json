@@ -3728,7 +3728,7 @@
     },
     {
       "anchor_text": "[email\u00a0protected]",
-      "candidate_url": "https://janoshik.com/cdn-cgi/l/email-protection#cba2a5ada48ba1aaa5a4b8a3a2a0e5a8a4a6",
+      "candidate_url": "https://janoshik.com/cdn-cgi/l/email-protection#e0898e868fa08a818e8f9388898bce838f8d",
       "product_hint": null,
       "score": 1,
       "source_url": "https://janoshik.com/verification",
@@ -5042,7 +5042,7 @@
     }
   ],
   "errors": [],
-  "generated_at": "2026-05-31T19:30:27.472020+00:00",
+  "generated_at": "2026-05-31T19:44:44.665721+00:00",
   "record_type": "candidate_queue_not_verified_coas",
   "schema_version": 1
 }

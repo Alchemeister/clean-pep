@@ -12,6 +12,7 @@
     { "vendor": "Finnrick", "url": "https://www.finnrick.com/products/ghk-cu", "type": "product-index", "product": "GHK-Cu" },
     { "vendor": "Finnrick", "url": "https://www.finnrick.com/products/tesamorelin", "type": "product-index", "product": "Tesamorelin" },
     { "vendor": "Janoshik", "url": "https://janoshik.com/verification", "type": "lab-verification" },
+    { "vendor": "Paradigm Peptide", "url": "https://www.paradigm-peptide.com/", "type": "vendor" },
     { "vendor": "Polaris Peptides", "url": "https://polarispeptides.com", "type": "vendor" },
     { "vendor": "Skye Peptides", "url": "https://skyepeptides.com", "type": "vendor" },
     { "vendor": "Peptide Partners", "url": "https://peptidepartners.co", "type": "vendor" },
