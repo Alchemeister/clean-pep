@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "ranking_independent": true,
+    "note": "Affiliate status must not change vendor ranking, panel scoring, or source labels."
+  },
+  "programs": [
+    {
+      "vendor": "Paradigm Peptide",
+      "status": "active",
+      "affiliate_url": "https://www.paradigm-peptide.com/?ref=mgrcuntw",
+      "base_url": "https://www.paradigm-peptide.com/",
+      "program_url": "https://www.paradigm-peptide.com/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Affiliate URL provided by account signup. Finnrick vendor profile verifies the base vendor URL."
+    },
+    {
+      "vendor": "Peptide Partners",
+      "status": "pending",
+      "affiliate_url": null,
+      "base_url": "https://peptidepartners.co",
+      "program_url": "https://peptide.partners/affiliate-registration/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Affiliate registration page found; application/submission not completed by Codex."
+    },
+    {
+      "vendor": "Polaris Peptides",
+      "status": "pending",
+      "affiliate_url": null,
+      "base_url": "https://polarispeptides.com",
+      "program_url": "https://polarispeptides.com/affiliate-area/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Affiliate area found; application/submission not completed by Codex."
+    },
+    {
+      "vendor": "Bulk Peptide Supply",
+      "status": "disabled",
+      "affiliate_url": null,
+      "base_url": "https://bulkpeptidesupply.com",
+      "program_url": "https://bulkpeptidesupply.com/affiliate-registration/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Registration page resolves but currently reports registration disabled."
+    }
+  ]
+}
