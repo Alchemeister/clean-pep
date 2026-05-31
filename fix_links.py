@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import re
-import os
+from pathlib import Path
+import argparse
 
+# Vendor affiliate links - easy to update here
 files_vendors = {
     "retatrutide.html": [
         ("Paradigm Peptide", "https://paradigmpeptides.com"),
@@ -71,30 +73,46 @@ files_vendors = {
     ],
 }
 
-SRC = "/root/pcs-build/src"
+def fix_affiliate_links(src_dir: str = "src") -> None:
+    """Wrap vendor cards with affiliate links using regex."""
+    src_path = Path(src_dir).resolve()
+    if not src_path.exists():
+        print(f"Directory not found: {src_path}")
+        return
 
-for fn, vendors in files_vendors.items():
-    path = os.path.join(SRC, fn)
-    with open(path) as f:
-        content = f.read()
-    
-    changed = 0
-    for vendor_name, url in vendors:
-        v = re.escape(vendor_name)
-        # Find full card block: <div class="card"> ... <div class="vendor-name">VENDOR</div> ... </div> (end of card)
-        pattern = r'(<div class="card">\s+<div class="rank">[^<]*</div>\s+<div class="vendor-name">' + v + r'</div>.*?</div>\s*</div>)'
-        link_open = '<a href="' + url + '" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">'
-        replacement = link_open + r'\1</a>'
-        new_content, n = re.subn(pattern, replacement, content, count=1, flags=re.DOTALL)
-        if n > 0:
-            content = new_content
-            changed += 1
-            print(f"  {fn}: {vendor_name} → linked")
-        else:
-            print(f"  WARN: {fn}: {vendor_name} — no match")
-    
-    with open(path, 'w') as f:
-        f.write(content)
-    print(f"{fn}: {changed}/{len(vendors)} linked")
+    for fn, vendors in files_vendors.items():
+        file_path = src_path / fn
+        if not file_path.exists():
+            print(f"WARN: {fn} not found")
+            continue
+        try:
+            with open(file_path, encoding="utf-8") as f:
+                content = f.read()
+            
+            changed = 0
+            for vendor_name, url in vendors:
+                v = re.escape(vendor_name)
+                # Improved pattern for full card
+                pattern = r'(<div class="card">\s+<div class="rank">[^<]*</div>\s+<div class="vendor-name">' + v + r'</div>.*?</div>\s*</div>)'
+                link_open = f'<a href="{url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">'
+                replacement = link_open + r'\1</a>'
+                new_content, n = re.subn(pattern, replacement, content, count=1, flags=re.DOTALL)
+                if n > 0:
+                    content = new_content
+                    changed += 1
+                    print(f"  {fn}: Linked {vendor_name}")
+                else:
+                    print(f"  WARN: {fn}: No match for {vendor_name}")
+            
+            with open(file_path, 'w', encoding="utf-8") as f:
+                f.write(content)
+            print(f"✅ {fn}: {changed}/{len(vendors)} links fixed")
+        except Exception as e:
+            print(f"❌ Error in {fn}: {e}")
 
-print("\nDone")
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Fix affiliate links in HTML vendor cards.")
+    parser.add_argument("--src", default="src", help="Path to source directory (default: src)")
+    args = parser.parse_args()
+    fix_affiliate_links(args.src)
+    print("\nAll done!")
