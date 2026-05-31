@@ -44,6 +44,56 @@
       "coupon_code": null,
       "terms_url": null,
       "notes": "Registration page resolves but currently reports registration disabled."
+    },
+    {
+      "vendor": "Skye Peptides",
+      "status": "manual-outreach",
+      "affiliate_url": null,
+      "base_url": "https://skyepeptides.com",
+      "program_url": "https://skyepeptides.com/contact-us/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "No public affiliate registration found. Contact/wholesale path opened for manual outreach."
+    },
+    {
+      "vendor": "Aavant Research",
+      "status": "manual-outreach",
+      "affiliate_url": null,
+      "base_url": "https://aavantpeptides.com",
+      "program_url": "https://aavantpeptides.com/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "No public affiliate registration found. Use site contact/manual outreach."
+    },
+    {
+      "vendor": "Peptide Crafters",
+      "status": "manual-outreach",
+      "affiliate_url": null,
+      "base_url": "https://peptidecrafters.com",
+      "program_url": "https://peptidecrafters.com/contact-us/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "No public affiliate registration found. Reward/account pages exist, but no affiliate application was found."
+    },
+    {
+      "vendor": "Amino Amigos",
+      "status": "manual-outreach",
+      "affiliate_url": null,
+      "base_url": "https://aminoamigos.com",
+      "program_url": "https://aminoamigos.com/contact-us/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "No public affiliate registration found. Contact page opened for manual outreach."
+    },
+    {
+      "vendor": "HkRoids",
+      "status": "manual-outreach",
+      "affiliate_url": null,
+      "base_url": "https://hkroids.com",
+      "program_url": "https://hkroids.com",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "No public affiliate registration found. Use site contact/manual outreach."
     }
   ]
 }
