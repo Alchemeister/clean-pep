@@ -7,13 +7,13 @@
   "programs": [
     {
       "vendor": "Paradigm Peptide",
-      "status": "active",
+      "status": "pending",
       "affiliate_url": "https://www.paradigm-peptide.com/?ref=mgrcuntw",
       "base_url": "https://www.paradigm-peptide.com/",
       "program_url": "https://www.paradigm-peptide.com/",
       "coupon_code": null,
       "terms_url": null,
-      "notes": "Affiliate URL provided by account signup. Finnrick vendor profile verifies the base vendor URL."
+      "notes": "Affiliate URL provided by account signup, but approval is pending. Finnrick vendor profile verifies the base vendor URL."
     },
     {
       "vendor": "Peptide Partners",
