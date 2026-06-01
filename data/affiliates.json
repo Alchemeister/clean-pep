@@ -33,7 +33,7 @@
       "program_url": "https://polarispeptides.com/affiliate-area/",
       "coupon_code": null,
       "terms_url": null,
-      "notes": "Affiliate area found; application/submission not completed by Codex."
+      "notes": "User confirmed affiliate account/application is pending approval."
     },
     {
       "vendor": "Bulk Peptide Supply",
@@ -47,13 +47,13 @@
     },
     {
       "vendor": "Skye Peptides",
-      "status": "manual-outreach",
+      "status": "outreach-sent",
       "affiliate_url": null,
       "base_url": "https://skyepeptides.com",
       "program_url": "https://skyepeptides.com/contact-us/",
       "coupon_code": null,
       "terms_url": null,
-      "notes": "No public affiliate registration found. Contact/wholesale path opened for manual outreach."
+      "notes": "Affiliate/partner outreach email sent from jacobecho Gmail."
     },
     {
       "vendor": "Aavant Research",
@@ -94,6 +94,26 @@
       "coupon_code": null,
       "terms_url": null,
       "notes": "No public affiliate registration found. Use site contact/manual outreach."
+    },
+    {
+      "vendor": "Pure Tested Peptides",
+      "status": "application-opened",
+      "affiliate_url": null,
+      "base_url": "https://www.puretestedpeptides.com",
+      "program_url": "https://www.puretestedpeptides.com/affiliate-signup/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Public affiliate signup found. Application page opened in Edge; not submitted yet."
+    },
+    {
+      "vendor": "Paramount Peptides",
+      "status": "candidate",
+      "affiliate_url": null,
+      "base_url": "https://paramountpeptides.com",
+      "program_url": "https://www.peptidesformedspas.org/affiliate-program",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Affiliate program page found on a separate partner domain; verify before submitting."
     }
   ]
 }
