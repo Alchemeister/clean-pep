@@ -1,254 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CleanPep v2 — Peptide Vendor Cleanliness Scores (May 2026)</title>
-    <meta name="description" content="Real lab data rankings for peptide vendors. COA verified cleanliness scores for Retatrutide, Tirzepatide, BPC-157 and more.">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-        :root {
-            --bg: #0d1117;
-            --card: #161b22;
-            --text: #e6edf3;
-            --accent: #3fb950;
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            font-family: 'Inter', system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-        nav {
-            background: #161b22;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #30363d;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--accent);
-        }
-        .search-container {
-            flex: 1;
-            max-width: 500px;
-            margin: 0 2rem;
-        }
-        #searchInput {
-            width: 100%;
-            padding: 12px 20px;
-            background: #21262d;
-            border: 1px solid #30363d;
-            border-radius: 9999px;
-            color: white;
-            font-size: 1rem;
-        }
-        .main {
-            display: flex;
-            min-height: calc(100vh - 60px);
-        }
-        .sidebar {
-            width: 240px;
-            background: #161b22;
-            padding: 2rem 1rem;
-            border-right: 1px solid #30363d;
-        }
-        .sidebar a {
-            display: block;
-            padding: 12px 16px;
-            color: #c9d1d9;
-            text-decoration: none;
-            border-radius: 8px;
-            margin-bottom: 4px;
-        }
-        .sidebar a:hover {
-            background: #21262d;
-        }
-        .content {
-            flex: 1;
-            padding: 2rem;
-        }
-        .featured-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-        .card {
-            background: var(--card);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
-        }
-        .card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px -12px rgb(63 185 80 / 0.3);
-        }
-        .card-content {
-            padding: 1.5rem;
-        }
-        .vendor-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-        .score {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin: 0.5rem 0;
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(15,23,42,0.95) 100%);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            color: white;
-            text-align: center;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        .card:hover .overlay {
-            display: flex;
-            opacity: 1;
-        }
-        .overlay-content {
-            max-width: 100%;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .card { animation: fadeIn 0.6s ease forwards; }
-        .hero {
-            text-align: center;
-            padding: 3rem 1rem;
-            background: linear-gradient(90deg, #0d1117, #161b22);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CleanPep - Peptide COA depth and vendor transparency</title>
+<meta name="description" content="A source-first peptide vendor comparison dashboard that separates headline purity from deeper COA panels like TFA, residual solvents, endotoxin, content, and identity.">
+<link rel="preload" as="image" href="assets/cleanpep-data-field.png">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 <body>
-    <nav>
-        <div class="logo">CleanPep <span style="font-size:0.9rem; color:#8b949e;">v2 • May 2026</span></div>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search vendors or peptides..." onkeyup="filterCards()">
-        </div>
-        <div>
-            <a href="about.html" style="color:#c9d1d9; text-decoration:none; margin-right:1rem;">About</a>
-            <a href="all-products.html" style="color:#c9d1d9; text-decoration:none;">All Products</a>
-        </div>
-    </nav>
-
-    <div class="main">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h3 style="padding:0 16px; margin-bottom:1rem; color:#8b949e;">Peptides</h3>
-            <a href="retatrutide.html">🔥 Retatrutide</a>
-            <a href="tirzepatide.html">Tirzepatide</a>
-            <a href="bpc157.html">BPC-157</a>
-            <a href="semaglutide.html">Semaglutide</a>
-            <a href="cjc-1295.html">CJC-1295</a>
-            <a href="ipamorelin.html">Ipamorelin</a>
-            <a href="tesamorelin.html">Tesamorelin</a>
-            <a href="ghk-cu.html">GHK-Cu</a>
-            <a href="more-products.html">More Peptides →</a>
-        </div>
-
-        <!-- Content -->
-        <div class="content">
-            <div class="hero">
-                <h1 style="font-size:2.5rem; margin-bottom:0.5rem;">Real COA Data.<br>Real Cleanliness.</h1>
-                <p style="color:#8b949e; max-width:600px; margin:0 auto 2rem;">Independent rankings based on Finnrick Analytics + Janoshik lab tests.<br>No marketing fluff — just the numbers that matter.</p>
-            </div>
-
-            <h2 style="margin-bottom:1.5rem;">Featured Retatrutide Vendors</h2>
-            <div class="featured-grid" id="featuredGrid">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="vendor-name">Paradigm Peptide</div>
-                        <div class="score">9</div>
-                        <p style="color:#8b949e; margin-bottom:1rem;">Best overall • Full panels shown</p>
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <strong>Finnrick A-rated • Confident</strong><br><br>
-                                Finnrick: 18 tests • Avg 8.8<br>
-                                Janoshik COA verified ✓<br>
-                                Latest: 28 May 2026<br>
-                                Full panels — solvents, TFA, metals<br><br>
-                                <a href="retatrutide.html" style="color:#3fb950;">Full COA & details →</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-content">
-                        <div class="vendor-name">Peptide Partners</div>
-                        <div class="score">8</div>
-                        <p style="color:#8b949e; margin-bottom:1rem;">A-rated across 4+ products</p>
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <strong>Finnrick A-rated • Confident</strong><br><br>
-                                Finnrick: 74 tests • Avg 8.2<br>
-                                Janoshik COA verified ✓<br>
-                                Latest: 28 May 2026<br>
-                                A-rated Reta, Tirz, Ipamorelin, TB-500<br><br>
-                                <a href="retatrutide.html" style="color:#3fb950;">Full COA & details →</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-content">
-                        <div class="vendor-name">Nuscience Peptides</div>
-                        <div class="score">8</div>
-                        <p style="color:#8b949e; margin-bottom:1rem;">Broad portfolio • A-rated multiple products</p>
-                        <div class="overlay">
-                            <div class="overlay-content">
-                                <strong>Finnrick A-rated • Confident</strong><br><br>
-                                Finnrick: 48 tests • 10 products<br>
-                                Latest: 27 May 2026<br>
-                                A-rated Reta, Tirz, Melanotan II<br><br>
-                                <a href="retatrutide.html" style="color:#3fb950;">Full COA & details →</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <p style="text-align:center; margin-top:3rem; color:#8b949e; font-size:0.95rem;">
-                More vendors and full peptide pages available in the sidebar.<br>
-                <strong>Affiliate links included</strong> — supporting independent testing since 2025.
-            </p>
-        </div>
+<nav class="site-nav">
+  <a href="index.html" class="brand" aria-label="CleanPep home"><span class="brand-mark">CLN</span><span>CleanPep</span><small>May 2026 source snapshot</small></a>
+  <div class="nav-links"><a href="retatrutide.html">Retatrutide</a><a href="tirzepatide.html">Tirzepatide</a><a href="semaglutide.html">Semaglutide</a><a href="bpc157.html">BPC/TB</a><a href="ipamorelin.html">Ipamorelin</a><a href="ghk-cu.html">GHK-Cu</a><a href="cjc-1295.html">CJC-1295</a><a href="tesamorelin.html">Tesamorelin</a><a href="more-products.html">More</a><a href="all-products.html">All</a><a href="coa-guide.html">COA Guide</a><a href="about.html">About</a></div>
+</nav>
+<main>
+  <section class="hero home-hero" data-reveal>
+    <div class="hero-copy">
+      <div class="eyebrow">Peptide vendor rankings without the affiliate fog</div>
+      <h1>Rank the deeper COAs, not just the pretty purity number.</h1>
+      <p class="sub">CleanPep separates headline purity from harder COA panels: TFA, residual solvents, endotoxin, content, and identity match.</p>
+      <div class="hero-actions"><a class="btn btn-accent" href="retatrutide.html">Start with Retatrutide</a><a class="btn btn-outline" href="coa-guide.html">Read the COA guide</a></div>
     </div>
-
-    <script>
-        function filterCards() {
-            const input = document.getElementById('searchInput').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                const name = card.querySelector('.vendor-name').textContent.toLowerCase();
-                card.style.display = name.includes(input) ? 'block' : 'none';
-            });
-        }
-
-        console.log('%c✅ CleanPep v2 loaded — search bar, sidebar, hover COA details & animations active', 'color:#3fb950; font-weight:600');
-    </script>
+    <div class="hero-panel" aria-label="CleanPep data snapshot">
+      <div><span>7,829</span><small>Finnrick samples</small></div>
+      <div><span>224</span><small>vendors</small></div>
+      <div><span>15</span><small>peptides</small></div>
+      <div><span>29 May</span><small>source snapshot</small></div>
+    </div>
+  </section>
+  <div class="container">
+    <div class="source-bar" data-reveal>
+  <div class="src-item"><span class="src-dot live"></span> Finnrick public homepage: 7,829 samples, 224 vendors, 15 peptides</div>
+  <div class="src-item"><span class="src-dot live"></span> Source date: 29 May 2026</div>
+  <div class="src-item"><span class="src-dot caution"></span> Product pages can filter for TFA, residual solvents, endotoxin, content, and identity proof.</div>
+  
+</div>
+    <section class="data-section">
+      <div class="section-heading"><div><p class="eyebrow">Research dashboard</p><h2>Product lanes</h2></div><input class="filter-input" type="search" placeholder="Search products or top vendors" data-filter=".product-card"></div>
+      <div class="product-grid"><a class="product-card" href="retatrutide.html" data-reveal data-search="retatrutide paradigm peptide">
+  <span class="product-kicker">185 vendors tracked</span>
+  <h3>Retatrutide</h3>
+  <p>Retatrutide has the broadest visible vendor ranking in the current Finnrick public snapshot. CleanPep now highlights only the ranking and confidence tier we can point back to source data.</p>
+  <div class="product-meta"><span class="tier tier-a">A Great</span><span>Top visible: Paradigm Peptide</span></div>
+</a>
+<a class="product-card" href="tirzepatide.html" data-reveal data-search="tirzepatide polaris peptides">
+  <span class="product-kicker">145 vendors tracked</span>
+  <h3>Tirzepatide</h3>
+  <p>Tirzepatide rankings are presented as a live-verification shortlist rather than a recommendation. Top ordering follows the Finnrick public homepage snapshot.</p>
+  <div class="product-meta"><span class="tier tier-a">A Great</span><span>Top visible: Polaris Peptides</span></div>
+</a>
+<a class="product-card" href="semaglutide.html" data-reveal data-search="semaglutide bulk peptide supply">
+  <span class="product-kicker">52 vendors tracked</span>
+  <h3>Semaglutide</h3>
+  <p>Semaglutide has multiple A-tier entries in the current public snapshot. Vendor names are shown as source rankings, not medical or purchasing advice.</p>
+  <div class="product-meta"><span class="tier tier-a">A Great</span><span>Top visible: Bulk Peptide Supply</span></div>
+</a>
+<a class="product-card" href="bpc157.html" data-reveal data-search="bpc-157 / tb-500 hkroids">
+  <span class="product-kicker">85 BPC-157 vendors tracked</span>
+  <h3>BPC-157 / TB-500</h3>
+  <p>BPC-157 is presented separately from TB-500 and the page now avoids overclaiming. Finnrick currently shows only two A-tier BPC-157 vendors on its public homepage snapshot.</p>
+  <div class="product-meta"><span class="tier tier-a">A Great</span><span>Top visible: HkRoids</span></div>
+</a>
+<a class="product-card" href="cjc-1295.html" data-reveal data-search="cjc-1295 zhejiang yichenkang biotechnology">
+  <span class="product-kicker">49 vendors tracked</span>
+  <h3>CJC-1295</h3>
+  <p>CJC-1295 is a risk-forward page: no A-tier public homepage entries were visible in the checked snapshot, so the interface makes that limitation obvious.</p>
+  <div class="product-meta"><span class="tier tier-b">B Good</span><span>Top visible: Zhejiang Yichenkang Biotechnology</span></div>
+</a>
+<a class="product-card" href="ipamorelin.html" data-reveal data-search="ipamorelin peptide partners">
+  <span class="product-kicker">56 vendors tracked</span>
+  <h3>Ipamorelin</h3>
+  <p>Ipamorelin has several A-tier vendors in the current source snapshot. CleanPep emphasizes source confidence and independent verification over marketing claims.</p>
+  <div class="product-meta"><span class="tier tier-a">A Great</span><span>Top visible: Peptide Partners</span></div>
+</a>
+<a class="product-card" href="ghk-cu.html" data-reveal data-search="ghk-cu peptidology">
+  <span class="product-kicker">67 vendors tracked</span>
+  <h3>GHK-Cu</h3>
+  <p>GHK-Cu data is included as a monitored product page. Because the public homepage excerpt did not expose the full current ranking in our check, rows are labeled as a verification queue.</p>
+  <div class="product-meta"><span class="tier tier-v">Verify Live</span><span>Top visible: Peptidology</span></div>
+</a>
+<a class="product-card" href="tesamorelin.html" data-reveal data-search="tesamorelin pure tested peptides">
+  <span class="product-kicker">51 vendors tracked</span>
+  <h3>Tesamorelin</h3>
+  <p>Tesamorelin is now framed as a cautious watchlist. Rows that were previously tentative are no longer overstated as A-rated without a visible source.</p>
+  <div class="product-meta"><span class="tier tier-v">Verify Live</span><span>Top visible: Pure Tested Peptides</span></div>
+</a></div>
+    </section>
+    <section class="data-section">
+      <div class="section-heading"><div><p class="eyebrow">Highest-signal market</p><h2>Retatrutide top visible rows</h2></div><a class="text-link" href="retatrutide.html">Full page</a></div>
+      <div class="featured-grid"><article class="vendor-card" data-reveal data-search="paradigm peptide a great">
+  <div class="card-topline"><span>#1</span><span class="tier tier-a">A Great</span></div>
+  <h3>Paradigm Peptide</h3>
+  <p>Visible in the checked Finnrick public ranking snapshot.</p>
+  <div class="card-actions"><a class="card-btn primary" href="https://www.paradigm-peptide.com/?ref=mgrcuntw" target="_blank" rel="sponsored noopener">Visit vendor</a><a class="card-btn" href="https://www.finnrick.com/vendors/paradigm-peptide" target="_blank" rel="noopener">Verify source</a></div>
+</article>
+<article class="vendor-card" data-reveal data-search="peptide partners a great">
+  <div class="card-topline"><span>#2</span><span class="tier tier-a">A Great</span></div>
+  <h3>Peptide Partners</h3>
+  <p>Visible in the checked Finnrick public ranking snapshot.</p>
+  <div class="card-actions"><a class="card-btn primary" href="https://peptidepartners.co" target="_blank" rel="noopener">Visit vendor</a><a class="card-btn" href="https://www.finnrick.com/vendors" target="_blank" rel="noopener">Verify source</a></div>
+</article>
+<article class="vendor-card" data-reveal data-search="lipeptides a great">
+  <div class="card-topline"><span>#3</span><span class="tier tier-a">A Great</span></div>
+  <h3>Lipeptides</h3>
+  <p>Visible in the checked Finnrick public ranking snapshot.</p>
+  <div class="card-actions"><a class="card-btn" href="https://www.finnrick.com/vendors" target="_blank" rel="noopener">Verify source</a></div>
+</article>
+<article class="vendor-card" data-reveal data-search="huaian hanyou peptide a great">
+  <div class="card-topline"><span>#4</span><span class="tier tier-a">A Great</span></div>
+  <h3>Huaian Hanyou Peptide</h3>
+  <p>Visible in the checked Finnrick public ranking snapshot.</p>
+  <div class="card-actions"><a class="card-btn" href="https://www.finnrick.com/vendors" target="_blank" rel="noopener">Verify source</a></div>
+</article>
+<article class="vendor-card" data-reveal data-search="guangzhou jeep biotechnology jeep a great">
+  <div class="card-topline"><span>#5</span><span class="tier tier-a">A Great</span></div>
+  <h3>Guangzhou Jeep Biotechnology JEEP</h3>
+  <p>Visible in the checked Finnrick public ranking snapshot.</p>
+  <div class="card-actions"><a class="card-btn" href="https://www.finnrick.com/vendors" target="_blank" rel="noopener">Verify source</a></div>
+</article>
+<article class="vendor-card" data-reveal data-search="noble dragons a great">
+  <div class="card-topline"><span>#6</span><span class="tier tier-a">A Great</span></div>
+  <h3>Noble Dragons</h3>
+  <p>Visible in the checked Finnrick public ranking snapshot.</p>
+  <div class="card-actions"><a class="card-btn" href="https://www.finnrick.com/vendors" target="_blank" rel="noopener">Verify source</a></div>
+</article></div>
+    </section>
+  </div>
+</main>
+<footer>
+  <p><strong>Research-use-only information. Not medical advice. Not a safety certification.</strong></p>
+  <div class="disclaimer-box">
+    <p>CleanPep is an editorial comparison layer built from public third-party testing pages. Rankings can change. Verify directly at <a href="https://www.finnrick.com/" target="_blank" rel="noopener">Finnrick</a> and individual lab verification pages such as <a href="https://janoshik.com/verification" target="_blank" rel="noopener">Janoshik</a>. Affiliate links may appear, but vendors cannot buy ranking position here.</p>
+  </div>
+</footer>
 </body>
 </html>

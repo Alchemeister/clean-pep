@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "strategy": {
+    "name": "CleanPep evidence-first partnership pipeline",
+    "goal": "Prioritize vendors and labs that can either earn affiliate revenue or help build a defensible full-panel COA database.",
+    "rules": [
+      "Affiliate status must never change ranking.",
+      "Prioritize vendors with batch-specific COAs, public contact paths, and willingness to provide deeper panels.",
+      "Ask for code plus link. Links monetize CleanPep buttons; codes spread through coupon extensions and social posts.",
+      "Treat standard purity/identity-only COAs as incomplete until residual solvents, TFA/counterion, endotoxin, content/fill, and identity evidence are verified."
+    ]
+  },
+  "targets": [
+    {
+      "name": "Peptidology",
+      "category": "vendor",
+      "priority": "A",
+      "status": "manual-outreach-needed",
+      "url": "https://peptidology.co",
+      "affiliate_path": "No public affiliate form found. Use direct partnership outreach.",
+      "contact": {
+        "email": "hello@peptidology.co",
+        "phone": "480-974-4660",
+        "source_url": "https://help.peptidology.co/en/articles/11051325-how-can-i-get-a-hold-of-you-guys"
+      },
+      "evidence_signals": [
+        "Public COA PDFs found for BPC-157 and Retatrutide.",
+        "Observed examples include assay/content, HPLC purity, endotoxin, and sterility evidence across checked PDFs."
+      ],
+      "known_gaps": [
+        "Residual solvents and TFA/counterion were not confirmed in the checked PDFs.",
+        "Need permission or feed for batch-level COA ingestion."
+      ],
+      "ask": [
+        "Affiliate link and dedicated CleanPep code.",
+        "Batch-level COA feed or folder.",
+        "Whether they have residual solvent and TFA/counterion testing for GLP products.",
+        "Whether they will sponsor expanded-panel testing through a named third-party lab."
+      ],
+      "why_it_matters": "Best current target for the CleanPep angle: real public documents and a visible testing story, but still room to push for solvents/TFA."
+    },
+    {
+      "name": "Limitless Life Nootropics / Limitless Biotech",
+      "category": "vendor",
+      "priority": "A",
+      "status": "application-ready",
+      "url": "https://limitlesslifenootropics.com",
+      "affiliate_path": "https://limitlesslifenootropics.com/affiliate-registration/",
+      "contact": {
+        "email": null,
+        "source_url": "https://limitlesslifenootropics.com/affiliate-registration/"
+      },
+      "evidence_signals": [
+        "Public affiliate page claims 15% commission on most peptides and 12% on VIP/GLP peptides.",
+        "Affiliate page says referrals get a 15% promotional code.",
+        "Affiliate page claims products are third-party verified by three labs."
+      ],
+      "known_gaps": [
+        "Need actual batch-level COA depth, not just marketing language.",
+        "Need confirmation of residual solvents, TFA/counterion, endotoxin, content/fill, and identity testing."
+      ],
+      "ask": [
+        "Affiliate approval, CleanPep code, and tracking link.",
+        "Current GLP product COA examples before promoting.",
+        "Clarify which labs and which panels are routine versus optional."
+      ],
+      "why_it_matters": "Likely strongest near-term money target because the program is real, pays stated commissions, and includes a public promo-code angle."
+    },
+    {
+      "name": "Prime Peptide Solutions",
+      "category": "vendor",
+      "priority": "B",
+      "status": "application-ready",
+      "url": "https://primepepsolutions.com",
+      "affiliate_path": "https://primepepsolutions.com/affiliate-program",
+      "contact": {
+        "email": "support@primepepsolutions.com",
+        "phone": "631-601-4596",
+        "source_url": "https://primepepsolutions.com/affiliate-program"
+      },
+      "evidence_signals": [
+        "Affiliate page says approved affiliates get a custom referral code and link.",
+        "Product pages advertise COA verified, HPLC, and MS testing.",
+        "Retatrutide page lists public batch COA links and purity values."
+      ],
+      "known_gaps": [
+        "Routine residual solvents, TFA/counterion, endotoxin, content/fill, and sterility were not confirmed as standard for every batch.",
+        "Requires customer account before affiliate application."
+      ],
+      "ask": [
+        "Affiliate approval, code, and link.",
+        "COA library access or export.",
+        "Expanded-panel status for GLP products."
+      ],
+      "why_it_matters": "Good code/link mechanics, but quality claims need CleanPep verification before aggressive promotion."
+    },
+    {
+      "name": "Peptides Source",
+      "category": "vendor",
+      "priority": "C",
+      "status": "application-possible-after-review",
+      "url": "https://www.peptidessource.com",
+      "affiliate_path": "https://www.peptidessource.com/affiliate/",
+      "contact": {
+        "email": "info@peptidessource.com",
+        "phone": "215-859-5900",
+        "source_url": "https://www.peptidessource.com/affiliate/"
+      },
+      "evidence_signals": [
+        "Public affiliate page exists.",
+        "Educational COA content discusses HPLC, MS, and possible moisture/residual solvent testing."
+      ],
+      "known_gaps": [
+        "Affiliate page is easy, but public evidence depth looks weaker than Peptidology/Limitless/Prime.",
+        "Need actual batch COAs before promoting."
+      ],
+      "ask": [
+        "Affiliate terms and custom code.",
+        "Sample batch COAs for GLP products.",
+        "Whether solvents/TFA/endotoxin/content are available."
+      ],
+      "why_it_matters": "Potential revenue target, but do not let easy approval pull CleanPep toward weak proof."
+    },
+    {
+      "name": "Peptide Sciences",
+      "category": "vendor",
+      "priority": "do-not-pursue",
+      "status": "shutdown",
+      "url": "https://www.peptidesciences.com",
+      "affiliate_path": null,
+      "contact": {
+        "email": "service@peptidesciencesmail.com",
+        "source_url": "https://www.peptidesciences.com/"
+      },
+      "evidence_signals": [
+        "The current site says Peptide Sciences voluntarily shut down operations and discontinued sales."
+      ],
+      "known_gaps": [
+        "Any successor/affiliate-looking site using the name should be treated as unauthorized until proven otherwise."
+      ],
+      "ask": [],
+      "why_it_matters": "Avoids wasting time and protects CleanPep from pointing users at brand-confusion scams."
+    },
+    {
+      "name": "SteriGenix Analytical",
+      "category": "testing-lab",
+      "priority": "A",
+      "status": "lab-partner-target",
+      "url": "https://sterigenixanalytical.com/",
+      "affiliate_path": null,
+      "contact": {
+        "email": null,
+        "source_url": "https://sterigenixanalytical.com/"
+      },
+      "evidence_signals": [
+        "Publishes peptide testing services for HPLC purity, mass spectrometry, bacterial endotoxin, and residual solvent testing.",
+        "Lists USP/ICH method references including USP <85>, USP <467>, and ICH Q3C."
+      ],
+      "known_gaps": [
+        "Need pricing, sample size, chain-of-custody, and public verification workflow."
+      ],
+      "ask": [
+        "Quote for a CleanPep full panel: identity, purity, content/fill, residual solvents, TFA/counterion, endotoxin, sterility/bioburden, water content.",
+        "Whether reports can be public/verifiable by batch ID.",
+        "Volume pricing for blind vendor audits."
+      ],
+      "why_it_matters": "This is the route toward your own actual differentiated vendor: full-panel proof instead of affiliate fog."
+    },
+    {
+      "name": "ACS Peptide Testing Labs",
+      "category": "testing-lab",
+      "priority": "A",
+      "status": "lab-partner-target",
+      "url": "https://acslabtest.com/",
+      "affiliate_path": null,
+      "contact": {
+        "email": null,
+        "source_url": "https://acslabtest.com/"
+      },
+      "evidence_signals": [
+        "Publishes peptide testing services including HPLC purity, mass spectrometry, ICP-MS heavy metals, GC-MS residual solvent analysis, and endotoxin testing."
+      ],
+      "known_gaps": [
+        "Need pricing confirmation and exact report format."
+      ],
+      "ask": [
+        "Quote for the same CleanPep full panel.",
+        "Rush pricing and sample quantity requirements.",
+        "Public verification options."
+      ],
+      "why_it_matters": "Second lab quote gives negotiating leverage and a backup for CleanPep-funded verification."
+    }
+  ],
+  "next_actions": [
+    "Apply to Limitless because commission/code mechanics are explicit.",
+    "Create/apply to Prime Peptide Solutions because it can issue both code and link.",
+    "Email Peptidology with a partnership ask centered on expanded panels and CleanPep visibility.",
+    "Request lab-panel quotes from SteriGenix and ACS before spending money on your own inventory.",
+    "Do not pursue Peptide Sciences, Pure Tested's broken affiliate flow, or Paramount's suspect partner-domain path until they clarify."
+  ]
+}

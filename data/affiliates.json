@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "ranking_independent": true,
+    "note": "Affiliate status must not change vendor ranking, panel scoring, or source labels."
+  },
+  "programs": [
+    {
+      "vendor": "Paradigm Peptide",
+      "status": "pending",
+      "affiliate_url": "https://www.paradigm-peptide.com/?ref=mgrcuntw",
+      "base_url": "https://www.paradigm-peptide.com/",
+      "program_url": "https://www.paradigm-peptide.com/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Affiliate URL provided by account signup, but approval is pending. Finnrick vendor profile verifies the base vendor URL."
+    },
+    {
+      "vendor": "Peptide Partners",
+      "status": "pending",
+      "affiliate_url": null,
+      "base_url": "https://peptidepartners.co",
+      "program_url": "https://peptide.partners/affiliate-registration/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Affiliate account submitted and currently pending approval."
+    },
+    {
+      "vendor": "Polaris Peptides",
+      "status": "pending",
+      "affiliate_url": null,
+      "base_url": "https://polarispeptides.com",
+      "program_url": "https://polarispeptides.com/affiliate-area/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "User confirmed affiliate account/application is pending approval."
+    },
+    {
+      "vendor": "Bulk Peptide Supply",
+      "status": "disabled",
+      "affiliate_url": null,
+      "base_url": "https://bulkpeptidesupply.com",
+      "program_url": "https://bulkpeptidesupply.com/affiliate-registration/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Registration page resolves but currently reports registration disabled."
+    },
+    {
+      "vendor": "Skye Peptides",
+      "status": "outreach-sent",
+      "affiliate_url": null,
+      "base_url": "https://skyepeptides.com",
+      "program_url": "https://skyepeptides.com/contact-us/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Affiliate/partner outreach email sent from the account owner."
+    },
+    {
+      "vendor": "Aavant Research",
+      "status": "manual-outreach",
+      "affiliate_url": null,
+      "base_url": "https://aavantpeptides.com",
+      "program_url": "https://aavantpeptides.com/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "No public affiliate registration found. Use site contact/manual outreach."
+    },
+    {
+      "vendor": "Peptide Crafters",
+      "status": "manual-outreach",
+      "affiliate_url": null,
+      "base_url": "https://peptidecrafters.com",
+      "program_url": "https://peptidecrafters.com/contact-us/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "No public affiliate registration found. Reward/account pages exist, but no affiliate application was found."
+    },
+    {
+      "vendor": "Amino Amigos",
+      "status": "manual-outreach",
+      "affiliate_url": null,
+      "base_url": "https://aminoamigos.com",
+      "program_url": "https://aminoamigos.com/contact-us/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "No public affiliate registration found. Contact page opened for manual outreach."
+    },
+    {
+      "vendor": "HkRoids",
+      "status": "manual-outreach",
+      "affiliate_url": null,
+      "base_url": "https://hkroids.com",
+      "program_url": "https://hkroids.com",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "No public affiliate registration found. Use site contact/manual outreach."
+    },
+    {
+      "vendor": "Pure Tested Peptides",
+      "status": "broken",
+      "affiliate_url": null,
+      "base_url": "https://www.puretestedpeptides.com",
+      "program_url": "https://www.puretestedpeptides.com/affiliate-signup/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Affiliate Program and Affiliate Signup menu links resolve, but the pages render no signup form/content. Use contact/manual outreach instead."
+    },
+    {
+      "vendor": "Paramount Peptides",
+      "status": "outreach-draft-opened",
+      "affiliate_url": null,
+      "base_url": "https://paramountpeptides.com",
+      "program_url": "https://paramountpeptides.com/contact-us/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Search snippets mention Become an Affiliate, but the current site exposes no working affiliate form. Contact page and support email draft opened for manual outreach."
+    },
+    {
+      "vendor": "Limitless Life Nootropics / Limitless Biotech",
+      "status": "application-ready",
+      "affiliate_url": null,
+      "base_url": "https://limitlesslifenootropics.com",
+      "program_url": "https://limitlesslifenootropics.com/affiliate-registration/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Higher-priority revenue target. Public affiliate page claims 15% commission on most peptides, 12% on VIP/GLP peptides, and a 15% referral promo code. Apply after verifying current COA depth."
+    },
+    {
+      "vendor": "Prime Peptide Solutions",
+      "status": "application-ready",
+      "affiliate_url": null,
+      "base_url": "https://primepepsolutions.com",
+      "program_url": "https://primepepsolutions.com/affiliate-program",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Affiliate page says approved affiliates receive a custom referral code and link. Requires customer account before application."
+    },
+    {
+      "vendor": "Peptides Source",
+      "status": "review-before-apply",
+      "affiliate_url": null,
+      "base_url": "https://www.peptidessource.com",
+      "program_url": "https://www.peptidessource.com/affiliate/",
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Public affiliate page exists, but evidence quality should be reviewed before promotion."
+    },
+    {
+      "vendor": "Peptide Sciences",
+      "status": "do-not-pursue",
+      "affiliate_url": null,
+      "base_url": "https://www.peptidesciences.com",
+      "program_url": null,
+      "coupon_code": null,
+      "terms_url": null,
+      "notes": "Current site says Peptide Sciences voluntarily shut down operations and discontinued sales. Treat successor/affiliate-looking uses of the name as unauthorized unless directly verified."
+    }
+  ]
+}

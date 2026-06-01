@@ -1,89 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>About CleanPep — Why This Site Exists</title>
-<meta name="description" content="CleanPep: independent vendor cleanliness scores from public lab data. Affiliate-funded, research-use-only, built by someone who got tired of fake lists." />
-<link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About CleanPep - Methodology and disclosures</title>
+<meta name="description" content="How CleanPep weights peptide vendor evidence, including purity, identity, content, TFA, residual solvents, endotoxin, and source verification.">
+<link rel="preload" as="image" href="assets/cleanpep-data-field.png">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
-<body>
-<nav>
-  <div><a href="/" class="logo">🧪 CleanPep <span>v2 — May 2026</span></a></div>
-  <div class="links">
-    <a href="retatrutide.html">Reta</a>
-    <a href="tirzepatide.html">Tirz</a>
-    <a href="semaglutide.html">Sema</a>
-    <a href="bpc157.html">BPC/TB</a>
-    <a href="ipamorelin.html">Ipa</a>
-    <a href="ghk-cu.html">GHK-Cu</a>
-    <a href="cjc-1295.html">CJC</a>
-    <a href="tesamorelin.html">Tesa</a>
-    <a href="more-products.html">More</a>
-    <a href="all-products.html">All</a>
-    <a href="coa-guide.html">COA Guide</a>
-    <a href="about.html" class="active">About</a>
-  </div>
-</nav>
-
-<div class="container">
-  <section class="hero">
-    <h1>About CleanPep<br /><em>And Why This Site Exists</em></h1>
-    <p class="sub">I'm a disabled researcher who got tired of the peptide vendor "review" ecosystem. Here's the truth: most comparison sites are just affiliate link farms. They rank vendors by who pays the highest commission, not by who actually tests their products properly.</p>
-  </section>
-
-  <div class="method">
-    <h3>📊 Where the Data Comes From</h3>
-    <p style="color:var(--text-dim);margin-bottom:1rem">
-      <strong>Finnrick Analytics</strong> is an independent lab based in Austin, TX that has tested <strong>7,829 peptide samples across 224 vendors and 18 products</strong> — and they publish results publicly. They include the panels that actually matter: residual solvents, quantitative TFA, heavy metals by ICP-MS, and now endotoxin screening. Finnrick publishes a machine-readable summary at <code>finnrick.com/llms-full.txt</code> which we use as our primary data feed.
-    </p>
-    <p style="color:var(--text-dim);margin-bottom:1rem">
-      <strong>Janoshik</strong> is the oldest and most well-known independent peptide testing lab. While they don't offer bulk public data, their individual COA verification at <code>janoshik.com/verification</code> allows anyone to look up a specific test report. Vendors with publicly verifiable Janoshik COAs receive a "Janoshik ✓" badge on CleanPep.
-    </p>
-    <p style="color:var(--text-dim);margin-bottom:1rem">
-      <strong>Community sources</strong> — Reddit r/saferpeptides, Discord servers, and user-submitted COAs via our Google Form — provide cross-referencing, top-color verification, and vendor reputation signals that no single lab can capture alone.
-    </p>
-    <p style="color:var(--text-dim)">
-      <strong>No scrapers. No automated tools. No paid data.</strong> All data is publicly available and verifiable. Any row marked "⚠ Verify live" means you should check the source yourself in a browser — we'd rather be honest about what needs verification than make claims we can't back up.
-    </p>
-  </div>
-
-  <div class="method">
-    <h3>📐 Scoring Methodology</h3>
-    <div class="method-grid">
-      <div class="method-item"><div class="label">Finnrick Rating</div>Primary signal. A/B/C confidence tiers with per-product scores.</div>
-      <div class="method-item"><div class="label">Panel Coverage</div>+1 point per contamination panel shown: solvents, TFA, metals, endotoxin.</div>
-      <div class="method-item"><div class="label">Multi-Lab Bonus</div>+1 if vendor has COAs from 2+ independent labs in 2026.</div>
-      <div class="method-item"><div class="label">Freshness Bonus</div>+1 for a test within the last 30 days. -1 for no test in 6+ months.</div>
-      <div class="method-item"><div class="label">Transparency</div>Public 3rd party COA with batch numbers and dates scores higher than self-reported data.</div>
-      <div class="method-item"><div class="label">Top Color Match</div>We track the vial top color from published COA photos so you can verify your batch matches.</div>
-    </div>
-    <p style="margin-top:1rem;font-size:.85rem;color:var(--text-muted)">
-      The Cleanliness Score is an <strong>editorial rating</strong> based on publicly available third-party test data. It is not a scientific measurement, safety certification, or endorsement. It answers one question: <em>"How much testing transparency does this vendor actually show?"</em>
-    </p>
-  </div>
-
-  <div class="method" style="border-left:3px solid var(--warn)">
-    <h3>💰 How This Site Makes Money</h3>
-    <p style="color:var(--text-dim)">
-      CleanPep is <strong>affiliate-funded</strong>. When you click a vendor link and make a qualifying purchase, we earn a commission (typically 15–30%) at <strong>no additional cost to you</strong>. We do not sell peptides, handle any products, or accept payment from vendors for better rankings. Scoring is based on public test data, not affiliate relationships. Vendors cannot buy higher scores.
-    </p>
-  </div>
-
-  <div class="method" style="border-left:3px solid var(--danger)">
-    <h3>⚠️ Full Disclaimer</h3>
-    <p style="color:var(--text-dim);font-size:.85rem;line-height:1.8">
-      <strong>Strictly for laboratory research use only. Not for human or animal consumption.</strong><br>
-      None of the statements on this site have been evaluated by the FDA or any regulatory authority. The Cleanliness Score is an editorial rating based on publicly available third-party test data and does not constitute an endorsement, recommendation, or safety certification by CleanPep. All product names, logos, and brands are property of their respective owners. Finnrick ratings are per Finnrick Analytics LLC and do not constitute an endorsement of any vendor. Always verify all data independently. CleanPep earns commissions from some linked vendors when users make qualifying purchases, at no additional cost to the user. This does not influence our scoring. CleanPep is not liable for any actions taken based on the information provided on this site. Your use of this site constitutes acceptance of these terms.
-    </p>
-  </div>
-</div>
-
-<footer>
-  <p><strong>Strictly for laboratory research use only. Not for human consumption.</strong></p>
+<body><nav class="site-nav">
+  <a href="index.html" class="brand" aria-label="CleanPep home"><span class="brand-mark">CLN</span><span>CleanPep</span><small>May 2026 source snapshot</small></a>
+  <div class="nav-links"><a href="retatrutide.html">Retatrutide</a><a href="tirzepatide.html">Tirzepatide</a><a href="semaglutide.html">Semaglutide</a><a href="bpc157.html">BPC/TB</a><a href="ipamorelin.html">Ipamorelin</a><a href="ghk-cu.html">GHK-Cu</a><a href="cjc-1295.html">CJC-1295</a><a href="tesamorelin.html">Tesamorelin</a><a href="more-products.html">More</a><a href="all-products.html">All</a><a href="coa-guide.html">COA Guide</a><a href="about.html" class="active">About</a></div>
+</nav><main class="container page-shell"><section class="hero compact" data-reveal><div class="eyebrow">Methodology</div><h1>Affiliate pages are easy. <em>Receipts are harder.</em></h1><p class="sub">CleanPep exists to make vendor comparison feel less like a commission contest and more like an audit trail. The site now treats purity as only one input and rewards vendors who publish deeper, batch-specific panels.</p></section>
+<section class="method-grid wide" data-reveal><div class="method-item"><div class="label">Primary source</div>Finnrick public rankings and product/vendor pages. Their homepage currently states 7,829 samples from 224 vendors across 15 peptides.</div><div class="method-item"><div class="label">Panel-depth checks</div>Identity match, content/fill, TFA, residual solvents, and endotoxin are scored separately from headline purity.</div><div class="method-item"><div class="label">Source weighting</div>Lab-verifiable batch COAs rank above vendor screenshots, Finnrick rank rows, and community reports. Missing public proof is marked as a risk signal.</div><div class="method-item"><div class="label">Scoring posture</div>CleanPep displays evidence depth; it does not certify safety, quality, legality, or medical suitability.</div></section>
+<div class="notice caution" data-reveal><strong>Disclosure:</strong> CleanPep may use affiliate links. Affiliate status does not change evidence scoring, and missing TFA, solvent, endotoxin, content, or identity proof is called out even on highly ranked vendors.</div>
+<section class="data-section" data-reveal><h2>What the redesign fixed</h2><ul class="check-list"><li>Removed stale over-specific claims where source pages conflicted.</li><li>Removed unsupported Janoshik checkmarks from ranking cards.</li><li>Replaced broken encoding and duplicated inline styling with a shared system.</li><li>Added direct verification links so readers can audit each page.</li></ul></section>
+</main><footer>
+  <p><strong>Research-use-only information. Not medical advice. Not a safety certification.</strong></p>
   <div class="disclaimer-box">
-    <p>CleanPep © 2026. Independent. Affiliate-funded. Research-use-only. Data: <a href="https://finnrick.com" target="_blank">Finnrick Analytics</a> · <a href="https://janoshik.com/verification" target="_blank">Janoshik</a> · Community. <a href="/">Home</a></p>
+    <p>CleanPep is an editorial comparison layer built from public third-party testing pages. Rankings can change. Verify directly at <a href="https://www.finnrick.com/" target="_blank" rel="noopener">Finnrick</a> and individual lab verification pages such as <a href="https://janoshik.com/verification" target="_blank" rel="noopener">Janoshik</a>. Affiliate links may appear, but vendors cannot buy ranking position here.</p>
   </div>
-</footer>
-</body>
-</html>
+</footer></body></html>
