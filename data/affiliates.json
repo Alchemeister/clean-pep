@@ -107,13 +107,13 @@
     },
     {
       "vendor": "Paramount Peptides",
-      "status": "candidate",
+      "status": "outreach-draft-opened",
       "affiliate_url": null,
       "base_url": "https://paramountpeptides.com",
-      "program_url": "https://www.peptidesformedspas.org/affiliate-program",
+      "program_url": "https://paramountpeptides.com/contact-us/",
       "coupon_code": null,
       "terms_url": null,
-      "notes": "Affiliate program page found on a separate partner domain; verify before submitting."
+      "notes": "Search snippets mention Become an Affiliate, but the current site exposes no working affiliate form. Contact page and support email draft opened for manual outreach."
     }
   ]
 }
