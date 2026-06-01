@@ -25,6 +25,12 @@
     { "vendor": "Peptidology", "url": "https://peptidology.co", "type": "vendor" },
     { "vendor": "Paramount Peptides", "url": "https://paramountpeptides.com", "type": "vendor" },
     { "vendor": "Oupeptide", "url": "https://oupeptide.com", "type": "vendor" },
-    { "vendor": "Pure Tested Peptides", "url": "https://puretestedpeptides.com", "type": "vendor" }
+    { "vendor": "Pure Tested Peptides", "url": "https://puretestedpeptides.com", "type": "vendor" },
+    { "vendor": "Peptidology", "url": "https://peptidology.co/pages/certificates-of-analysis", "type": "vendor-coa-library" },
+    { "vendor": "Limitless Life Nootropics", "url": "https://limitlesslifenootropics.com", "type": "vendor" },
+    { "vendor": "Prime Peptide Solutions", "url": "https://primepepsolutions.com", "type": "vendor" },
+    { "vendor": "Peptides Source", "url": "https://www.peptidessource.com", "type": "vendor" },
+    { "vendor": "SteriGenix Analytical", "url": "https://sterigenixanalytical.com/", "type": "testing-lab" },
+    { "vendor": "ACS Peptide Testing Labs", "url": "https://acslabtest.com/", "type": "testing-lab" }
   ]
 }
